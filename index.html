@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="شركة توظيف عمال مصرية متخصصة في توفير العمالة المدربة والموثوقة">
+  <meta name="theme-color" content="#2c5f7f">
+  <title><span class="lang-ar">HR Connect Egypt - شركة توظيف عمال</span><span class="lang-en">HR Connect Egypt - Recruitment Company</span></title>
+  <link rel="stylesheet" href="index.css">
+  <style>
+    /* language helpers */
+    :root{--primary:#2c5f7f;--accent:#4a8f5e}
+    .lang-en{display:none}
+    [dir="ltr"] .lang-en{display:block}
+    [dir="ltr"] .lang-ar{display:none}
+    [dir="rtl"] .lang-ar{display:block}
+    [dir="rtl"] .lang-en{display:none}
+    .lang-btn{padding:8px 12px;border-radius:6px;border:1px solid #ddd;background:#fff;cursor:pointer}
+    .lang-btn.active{background:var(--primary);color:#fff;border-color:var(--primary)}
+  </style>
+</head>
+<body>
+
+  <!-- شريط التنقل -->
+  <nav class="navbar">
+    <div class="container" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap">
+      <div class="nav-brand">💼 HR Connect Egypt</div>
+      <div style="display:flex;align-items:center;gap:20px;flex-wrap:wrap">
+        <ul class="nav-links" style="margin:0;display:flex;align-items:center">
+          <li><a href="start.html" style="color:#4a8f5e;font-weight:700"><span class="lang-ar">⚡ HUB</span><span class="lang-en">⚡ HUB</span></a></li>
+          <li><a href="landing.html"><span class="lang-ar">الرئيسية</span><span class="lang-en">Home</span></a></li>
+          <li><a href="about.html"><span class="lang-ar">عن الشركة</span><span class="lang-en">About</span></a></li>
+          <li><a href="jobs.html"><span class="lang-ar">الوظائف</span><span class="lang-en">Jobs</span></a></li>
+          <li><a href="testimonials.html"><span class="lang-ar">آراء العملاء</span><span class="lang-en">Testimonials</span></a></li>
+          <li><a href="worker.html"><span class="lang-ar">🟢 قدّم على وظيفة</span><span class="lang-en">🟢 Apply for Job</span></a></li>
+          <li><a href="company.html"><span class="lang-ar">🔵 اطلب عمال</span><span class="lang-en">🔵 Request Workers</span></a></li>
+          <li><a href="#contact"><span class="lang-ar">اتصل بنا</span><span class="lang-en">Contact</span></a></li>
+        </ul>
+        <div class="lang-switch" style="display:flex;gap:8px">
+          <button class="lang-btn" id="btnArabic">عربى</button>
+          <button class="lang-btn" id="btnEnglish">English</button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- القسم الرئيسي -->
+  <section id="home" class="hero">
+    <div class="hero-content">
+      <h1><span class="lang-ar">شركة توظيف عمال</span><span class="lang-en">Recruitment Company</span></h1>
+      <p><span class="lang-ar">الكفاءة تلتقى بالخبرة منصتنا الالكترونية للتوظيف مخصصة لتحسين الكفاءة غى جمبع مراحل عملية التوظيف بفضل تقنياتا المبتكرة وواجهتنا سهلة الاستخدام نبسط رحلة التوظيف باكملها بداء من نشر الوظائف استقطاب المرشحين وصولا الى تتبع المتقدمين وقرارات التوظيف تستخدم منصتنا خورزميات متقدمة واتمتة ذكية لمطابقة متطلبات الوظيفة</span><span class="lang-en">Efficiency meets expertise. Our electronic recruitment platform is designed to enhance efficiency at all stages of the hiring process. Thanks to our innovative technologies and user-friendly interface, we simplify the entire recruitment journey from job posting to candidate screening and hiring decisions. Our platform uses advanced algorithms and smart automation to match job requirements with the perfect candidates.</span></p>
+      <div class="buttons">
+        <a href="worker.html" class="btn btn-primary">📋 <span class="lang-ar">قدّم على وظيفة</span><span class="lang-en">Apply for a Job</span></a>
+        <a href="company.html" class="btn btn-secondary">🏢 <span class="lang-ar">اطلب عمال</span><span class="lang-en">Request Workers</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- قسم عن الشركة -->
+  <section id="about" class="about">
+    <div class="about-title-section">
+      <h2><span class="lang-ar">عن الشركة</span><span class="lang-en">About the Company</span></h2>
+    </div>
+    <div class="container">
+      <p><span class="lang-ar">نحن نساعدك فى الحصول عل افضل وظيفة واكتشاف  موهبتك تهدف عملية التوظيف الى توظيف اكثر كفاءة وتوفير افضل العلاقات للمرشحين</span><span class="lang-en">We help you find the best job and discover your talents. Our recruitment process aims for efficient hiring and providing the best relationships for candidates.</span></p>
+    <p><i class="fa fa-check text-primary me-3"></i><span class="lang-ar">بحث شامل عن المرشحين</span><span class="lang-en">Comprehensive candidate search</span></p>
+    <p><i class="fa fa-check text-primary me-3"></i><span class="lang-ar">جدولة المقابلات بكفاءة</span><span class="lang-en">Efficient interview scheduling</span></p>
+    <p><i class="fa fa-check text-primary me-3"></i><span class="lang-ar">اتخاز القرارات بناء على البيانات</span><span class="lang-en">Data-driven decision making</span></p>
+    <p><i class="fa fa-check text-primary me-3"></i><span class="lang-ar">عملية توظيف تعاونية</span><span class="lang-en">Collaborative hiring process</span></p>
+      <!-- إحصائيات الشركة -->
+      <div class="stats-container"> 
+        <div class="stat-box">
+          <h3>500+</h3>
+          <p><span class="lang-ar">عميل مرضي</span><span class="lang-en">Satisfied Clients</span></p>
+        </div>
+        <div class="stat-box">
+          <h3>2000+</h3>
+          <p><span class="lang-ar">عامل موظف</span><span class="lang-en">Employees Hired</span></p>
+        </div>
+        <div class="stat-box">
+          <h3>3+</h3>
+          <p><span class="lang-ar">سنوات خبرة</span><span class="lang-en">Years of Experience</span></p>
+        </div>
+        <div class="stat-box">
+          <h3>98%</h3>
+          <p><span class="lang-ar">رضا العملاء</span><span class="lang-en">Customer Satisfaction</span></p>
+        </div>
+      </div>
+      
+      <!-- الرؤية والرسالة -->
+      <div class="mission-vision-container">
+        <div class="mission-card">
+          <h3>🎯 <span class="lang-ar">رسالتنا</span><span class="lang-en">Our Mission</span></h3>
+          <p><span class="lang-ar">تعمل شركتا على توفير كوادر بشرية تلبى متطلبات مختلفة القطاعات والمساهمة فى تقليل البطالة م خلال خلق فرص عمل ماسبة نركز على السرعة والدقة فى الختيار لظمان تحقيق اعلى مستويات الرضالاصحاب الاعمال والباحثين  عن فرص عمل توفير عمالة مدربة واحترافية تلبى احتياجات سوق العمل المصرى باعلى معايير الجودة والاحترافية</span><span class="lang-en">Our company is committed to providing skilled workforce solutions across various sectors and contributing to unemployment reduction by creating suitable job opportunities. We focus on speed and accuracy in selection to ensure the highest satisfaction levels for business owners and job seekers alike, providing trained and professional workforce that meets Egypt's labor market needs with the highest quality and professionalism standards.</span></p>
+        </div>
+        <div class="vision-card">
+          <h3>🌟 <span class="lang-ar">رؤيتنا</span><span class="lang-en">Our Vision</span></h3>
+          <p><span class="lang-ar">اطلاقا من التطور الرقمى المتسارع وحاجة سوق العمل الى حلول زكية وفعالة  نضع رؤيتا لتاسيس منصة الكترونية متكاملة لشركة توظيف تهدف ال احداث نقلة نوعية فى اليات الربط بين الكفاءة وسوق الاعمال  ترتكز الرؤية على تطوير موقع احترافى عالى الكفاءة رؤيتنا ان يصبح الموقع منصة رائدة فى قطاع التوظيف قائمة على الثقة والشفافية والاحترافية</span><span class="lang-en">Based on accelerated digital transformation and the labor market's need for intelligent and effective solutions, we envision establishing an integrated electronic platform for recruitment aimed at creating a qualitative shift in connecting competence with business markets. Our vision focuses on developing a professional, highly efficient website that becomes a leading platform in the recruitment sector, built on trust, transparency, and professionalism.</span></p>
+        </div>
+      </div>
+      
+      <!-- المميزات الرئيسية -->
+      <div class="features">
+        <div class="feature-card">
+          <div class="feature-icon">👥</div>
+          <h3><span class="lang-ar">عمالة مدربة</span><span class="lang-en">Trained Workforce</span></h3>
+          <p><span class="lang-ar">عمال مدربون وذو خبرة عالية في مختلف التخصصات</span><span class="lang-en">Highly experienced workers trained in various specializations</span></p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">⚡</div>
+          <h3><span class="lang-ar">سرعة التوظيف</span><span class="lang-en">Fast Hiring</span></h3>
+          <p><span class="lang-ar">توفير عمال في الوقت المناسب حسب احتياجاتك</span><span class="lang-en">Providing workers at the right time according to your needs</span></p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🔒</div>
+          <h3><span class="lang-ar">ضمان الجودة</span><span class="lang-en">Quality Assurance</span></h3>
+          <p><span class="lang-ar">ضمان كامل برضاك عن الخدمة والعمال</span><span class="lang-en">Full guarantee of your satisfaction with our service and workers</span></p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">💼</div>
+          <h3><span class="lang-ar">احترافية عالية</span><span class="lang-en">High Professionalism</span></h3>
+          <p><span class="lang-ar">فريق احترافي يقدم أفضل الخدمات</span><span class="lang-en">Professional team providing the best services</span></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- نماذج التقديم -->
+  <section id="contact" class="forms-section">
+    <div class="container">
+      <h2><span class="lang-ar">ابدأ الآن</span><span class="lang-en">Get Started Now</span></h2>
+      <div class="forms-container">
+        <!-- نموذج تقديم العامل -->
+        <div class="form-box">
+          <h3>⭐ <span class="lang-ar">قدّم على وظيفة</span><span class="lang-en">Apply for a Job</span></h3>
+          <p style="color: #666; margin: 1.5rem 0; line-height: 1.8;">
+            <span class="lang-ar">للحصول على تجربة احترافية عند تقديمك على وظيفة، ننصحك بالدخول إلى صفحة تقديم الطلب المتخصصة حيث يمكنك إدخال جميع بيانات طلبك بسهولة.</span><span class="lang-en">To get a professional experience when applying for a job, we recommend visiting our specialized application page where you can easily enter all your application details.</span>
+          </p>
+          <a href="worker.html" class="btn btn-primary" style="display: inline-block; text-align: center; text-decoration: none;">
+            <span class="lang-ar">اذهب إلى صفحة التقديم →</span><span class="lang-en">Go to Application Page →</span>
+          </a>
+        </div>
+
+        <!-- نموذج طلب عمال -->
+        <div class="form-box">
+          <h3>⭐ <span class="lang-ar">طلب عمال مدربين</span><span class="lang-en">Request Trained Workers</span></h3>
+          <p style="color: #666; margin: 1.5rem 0; line-height: 1.8;">
+            <span class="lang-ar">للحصول على خدمة عالية الجودة وتجربة احترافية عند طلب عمال، ننصحك بالدخول إلى صفحة طلب العمال المتخصصة حيث يمكنك إدخال جميع تفاصيلك بسهولة.</span><span class="lang-en">To get high-quality service and professional experience when requesting workers, we recommend visiting our specialized worker request page where you can easily enter all your details.</span>
+          </p>
+          <a href="company.html" class="btn btn-primary" style="display: inline-block; text-align: center; text-decoration: none;">
+            <span class="lang-ar">اذهب إلى صفحة طلب العمال →</span><span class="lang-en">Go to Worker Request Page →</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- الوظائف المتاحة -->
+  <section class="jobs-section">
+    <div class="container">
+      <h2><span class="lang-ar">الوظائف المتاحة</span><span class="lang-en">Available Jobs</span></h2>
+      <div class="jobs-grid" id="jobsList"></div>
+    </div>
+  </section>
+
+  <!-- آراء العملاء -->
+  <section class="testimonials-section">
+    <div class="container">
+      <h2><span class="lang-ar">آراء عملائنا</span><span class="lang-en">Client Reviews</span></h2>
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <div class="stars">⭐⭐⭐⭐⭐</div>
+          <p><span class="lang-ar">خدمة ممتازة وعمال ذو كفاءة عالية جداً. أنصح بهم بشدة!</span><span class="lang-en">Excellent service and highly skilled workers. I highly recommend them!</span></p>
+          <h4><span class="lang-ar">أحمد محمد - مدير شركة</span><span class="lang-en">Ahmed Mohammed - Company Manager</span></h4>
+        </div>
+        <div class="testimonial-card">
+          <div class="stars">⭐⭐⭐⭐⭐</div>
+          <p><span class="lang-ar">توظيف سريع واحترافي. تعاملهم رائع جداً!</span><span class="lang-en">Fast and professional hiring. Their service is amazing!</span></p>
+          <h4><span class="lang-ar">فاطمة علي - مالكة مصنع</span><span class="lang-en">Fatima Ali - Factory Owner</span></h4>
+        </div>
+        <div class="testimonial-card">
+          <div class="stars">⭐⭐⭐⭐⭐</div>
+          <p><span class="lang-ar">أفضل شركة توظيف وظفت بها. جودة ممتازة وخدمة مثالية!</span><span class="lang-en">The best recruitment company I've used. Excellent quality and perfect service!</span></p>
+          <h4><span class="lang-ar">محمود إبراهيم - صاحب مقاول</span><span class="lang-en">Mahmoud Ibrahim - Contractor Owner</span></h4>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- معلومات التواصل -->
+  <section class="contact-info-section">
+    <div class="container">
+      <h2><span class="lang-ar">معلومات التواصل</span><span class="lang-en">Contact Information</span></h2>
+      <div class="info-grid">
+        <div class="info-card">
+          <div class="info-icon">📱</div>
+          <h3><span class="lang-ar">رقم الهاتف</span><span class="lang-en">Phone Number</span></h3>
+          <p><a href="tel:01013346497" style="color: white; text-decoration: none; cursor: pointer;">01013346497</a></p>
+        </div>
+        <div class="info-card">
+          <div class="info-icon">📧</div>
+          <h3><span class="lang-ar">البريد الإلكتروني</span><span class="lang-en">Email Address</span></h3>
+          <p><a href="mailto:daiemad360@gmail.com" style="color: white; text-decoration: none; cursor: pointer;">daiemad360@gmail.com</a></p>
+        </div>
+        <div class="info-card">
+          <div class="info-icon">📍</div>
+          <h3><span class="lang-ar">العنوان</span><span class="lang-en">Address</span></h3>
+          <p><span class="lang-ar">كفر الشيخ - مركز سيدي سالم، مصر</span><span class="lang-en">Kafr El-Sheikh - Sidi Salem Center, Egypt</span></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- التذييل -->
+  
+
+  <script src="index.js"></script>
+
+  <!-- Footer Start -->
+  <footer class="footer" style="background:#fff;padding:20px 0;margin-top:20px">
+    <div class="container" style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px">
+      <div>
+        <h4><span class="lang-ar">الشركة</span><span class="lang-en">Company</span></h4>
+        <ul style="list-style:none;padding:0;margin:0">
+          <li><a href=""><span class="lang-ar">معلوماتنا</span><span class="lang-en">About Us</span></a></li>
+          <li><a href=""><span class="lang-ar">خدماتنا</span><span class="lang-en">Services</span></a></li>
+          <li><a href=""><span class="lang-ar">سياسة الخصوصية</span><span class="lang-en">Privacy Policy</span></a></li>
+        </ul>
+      </div>
+      <div>
+        <h4><span class="lang-ar">روابط سريعة</span><span class="lang-en">Quick Links</span></h4>
+        <ul style="list-style:none;padding:0;margin:0">
+          <li><a href="landing.html"><span class="lang-ar">الرئيسية</span><span class="lang-en">Home</span></a></li>
+          <li><a href="about.html"><span class="lang-ar">عن الشركة</span><span class="lang-en">About</span></a></li>
+          <li><a href="index.html#contact"><span class="lang-ar">اتصل بنا</span><span class="lang-en">Contact</span></a></li>
+        </ul>
+      </div>
+      <div>
+        <h4><span class="lang-ar">اتصل بنا</span><span class="lang-en">Contact Us</span></h4>
+        <p style="margin:0"><span class="lang-ar">📍 القاهرة, مصر</span><span class="lang-en">📍 Cairo, Egypt</span></p>
+        <p style="margin:0"><span class="lang-ar">📞 01013346497</span><span class="lang-en">📞 +20 101 334 6497</span></p>
+        <p style="margin:0">📧 daiemad360@gmail.com</p>
+      </div>
+      <div style="align-self:flex-end">
+        <p>&copy; 2026 HR Connect Egypt</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function(){
+      const btnArabic = document.getElementById('btnArabic');
+      const btnEnglish = document.getElementById('btnEnglish');
+      function setLang(lang){
+        if(lang==='en'){
+          document.documentElement.lang='en';
+          document.documentElement.dir='ltr';
+          btnEnglish.classList.add('active'); 
+          btnArabic.classList.remove('active');
+        } else {
+          document.documentElement.lang='ar';
+          document.documentElement.dir='rtl';
+          btnArabic.classList.add('active'); 
+          btnEnglish.classList.remove('active');
+        }
+        updateLangButtons(lang);
+        localStorage.setItem('indexSiteLang',lang);
+      }
+      function updateLangButtons(lang){
+        if(lang==='en'){
+          btnArabic.style.display = 'inline-block';
+          btnEnglish.style.display = 'none';
+        } else {
+          btnEnglish.style.display = 'inline-block';
+          btnArabic.style.display = 'none';
+        }
+      }
+      btnArabic.addEventListener('click',()=>setLang('ar'));
+      btnEnglish.addEventListener('click',()=>setLang('en'));
+      const saved = localStorage.getItem('indexSiteLang') || 'ar';
+      setLang(saved);
+    })();
+  </script>
+</body>
+</html>

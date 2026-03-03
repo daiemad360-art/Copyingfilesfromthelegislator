@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="HR Connect Egypt - specialized in providing trained, reliable workforce">
+  <meta name="theme-color" content="#2c5f7f">
+  <title>HR Connect Egypt - Workforce Solutions</title>
+  <link rel="stylesheet" href="index.css">
+  <style>
+    /* Landing page specific styles (polished) */
+    .landing-hero {
+      background: linear-gradient(rgba(44, 95, 127, 0.72), rgba(74, 143, 94, 0.72)), 
+                  url('https://images.unsplash.com/photo-1552664730-d307ca884978?w=1200&h=600&fit=crop') center/cover no-repeat;
+      color: white;
+      padding: 120px 20px;
+      text-align: center;
+      min-height: 680px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .landing-content {
+      max-width: 900px;
+      z-index: 1;
+    }
+
+    .landing-content h1 {
+      font-size: 3.2rem;
+      margin-bottom: 1.2rem;
+      text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.28);
+      font-weight: 800;
+      letter-spacing: 0.6px;
+    }
+
+    .landing-content p {
+      font-size: 1.15rem;
+      margin-bottom: 2.2rem;
+      opacity: 0.95;
+      line-height: 1.7;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.18);
+    }
+
+    .landing-buttons { display:flex; gap:1rem; justify-content:center; flex-wrap:wrap }
+
+    .landing-btn { padding:14px 32px; border-radius:8px; font-weight:700; text-decoration:none; display:inline-block }
+
+    .landing-btn-primary { background: linear-gradient(135deg,#2c5f7f 0%,#4a8f5e 100%); color:#fff }
+    .landing-btn-secondary { background:#fff; color:#2c5f7f; border:1px solid rgba(44,95,127,0.08) }
+
+    .lang-btn.hidden { display:none }
+
+    @media (max-width:768px){ .landing-hero{padding:80px 16px;min-height:520px} .landing-content h1{font-size:2rem} .landing-content p{font-size:1rem} }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="container">
+      <div class="nav-brand">💼 HR Connect Egypt</div>
+      <ul class="nav-links">
+        <li><a href="start.html" style="color:#4a8f5e;font-weight:700">⚡ HUB</a></li>
+        <li><a href="landing.html" id="navHome">Home</a></li>
+        <li><a href="about.html" id="navAbout">About</a></li>
+        <li><a href="jobs.html" id="navJobs">Jobs</a></li>
+        <li><a href="testimonials.html" id="navTestimonials">Testimonials</a></li>
+        <li><a href="worker.html" id="navApply">Apply for Job</a></li>
+        <li><a href="company.html" id="navRequest">Request Workers</a></li>
+        <li><a href="index.html#contact" id="navContact">Contact</a></li>
+        <li class="lang-switch">
+          <button onclick="setLanguage('ar')" class="lang-btn hidden" id="btnArabic">عربي</button>
+          <button onclick="setLanguage('en')" class="lang-btn hidden" id="btnEnglish">EN</button>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <section class="landing-hero">
+    <div class="landing-content">
+      <h1 id="title">Workforce & Staffing Solutions</h1>
+      <p id="description">We connect employers with trained, reliable workers across multiple sectors. With deep market knowledge and strict selection standards, we ensure competence, commitment and strong performance for every placement.</p>
+      <div class="landing-buttons">
+        <a href="worker.html" class="landing-btn landing-btn-primary" id="btnWorker">📋 Apply for a Job</a>
+        <a href="company.html" class="landing-btn landing-btn-secondary" id="btnCompany">🏢 Hire Workers</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer (translated and simplified) -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h5 id="footerCompany">Company</h5>
+          <a href="#">About Us</a><br>
+          <a href="#">Contact</a><br>
+          <a href="#">Services</a>
+        </div>
+        <div class="footer-section">
+          <h5 id="footerLinks">Quick Links</h5>
+          <a href="#">Privacy Policy</a><br>
+          <a href="#">Terms & Conditions</a>
+        </div>
+        <div class="footer-section">
+          <h5 id="footerContact">Contact</h5>
+          <p>Address: Cairo, Egypt</p>
+          <p>Phone: 01013346497</p>
+          <p>Email: daiemad360@gmail.com</p>
+        </div>
+      </div>
+      <hr>
+      <p id="footerText">&copy; 2026 HR Connect Egypt. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Language and content toggle script -->
+  <script>
+    let currentLanguage = localStorage.getItem('language') || 'en';
+
+    const texts = {
+      en: {
+        navHome: 'Home', navAbout: 'About', navJobs: 'Jobs', navTestimonials: 'Testimonials', navContact: 'Contact',
+        title: 'Workforce & Staffing Solutions', description: 'We connect employers with trained, reliable workers across multiple sectors. With deep market knowledge and strict selection standards, we ensure competence, commitment and strong performance for every placement.',
+        btnWorker: '📋 Apply for a Job', btnCompany: '🏢 Hire Workers',
+        footerCompany: 'Company', footerLinks: 'Quick Links', footerContact: 'Contact', footerText: '&copy; 2026 HR Connect Egypt. All rights reserved.'
+      },
+      ar: {
+        navHome: 'الرئيسية', navAbout: 'عن الشركة', navJobs: 'الوظائف', navTestimonials: 'آراء العملاء', navContact: 'اتصل بنا',
+        title: 'شركة توظيف عمال', description: 'نحن شركة رائدة في مجال توظيف وتوريد العمالة المدربة والمؤهلة، نربط أصحاب الأعمال بأفضل الكفاءات ونضمن الكفاءة والالتزام.',
+        btnWorker: '📋 قدّم على وظيفة', btnCompany: '🏢 اطلب عمال',
+        footerCompany: 'الشركة', footerLinks: 'روابط سريعة', footerContact: 'اتصل بنا', footerText: '&copy; 2026 شركة توظيف عمال. جميع الحقوق محفوظة.'
+      }
+    };
+
+    function setLanguage(lang){
+      currentLanguage = lang;
+      localStorage.setItem('language', lang);
+      document.documentElement.lang = lang;
+      document.body.dir = lang === 'ar' ? 'rtl' : 'ltr';
+
+      // toggle language buttons: show the other language button
+      const btnAr = document.getElementById('btnArabic');
+      const btnEn = document.getElementById('btnEnglish');
+      if(btnAr) btnAr.classList.toggle('hidden', lang === 'ar');
+      if(btnEn) btnEn.classList.toggle('hidden', lang === 'en');
+
+      // set texts
+      const t = texts[lang] || texts.en;
+      const setIf = (id, value) => { const el = document.getElementById(id); if(el) el.innerHTML = value; };
+      setIf('navHome', t.navHome); setIf('navAbout', t.navAbout); setIf('navJobs', t.navJobs); setIf('navTestimonials', t.navTestimonials); setIf('navContact', t.navContact);
+      setIf('title', t.title); setIf('description', t.description);
+      setIf('btnWorker', t.btnWorker); setIf('btnCompany', t.btnCompany);
+      setIf('footerCompany', t.footerCompany); setIf('footerLinks', t.footerLinks); setIf('footerContact', t.footerContact); setIf('footerText', t.footerText);
+    }
+
+    document.addEventListener('DOMContentLoaded', function(){
+      setLanguage(currentLanguage);
+    });
+  </script>
+
+  <!-- External scripts (kept as-is) -->
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="lib/wow/wow.min.js"></script>
+  <script src="lib/easing/easing.min.js"></script>
+  <script src="lib/waypoints/waypoints.min.js"></script>
+  <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+  <script src="js/main.js"></script>
+  <script src="index.js"></script>
+</body>
+</html>

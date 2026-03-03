@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#2c5f7f">
+  <title>اطلب عمال - HR Connect Egypt</title>
+  <link rel="stylesheet" href="index.css">
+  <style>
+    /* language helpers */
+    :root{--primary:#2c5f7f;--accent:#4a8f5e}
+    .lang-en{display:none}
+    [dir="ltr"] .lang-en{display:block}
+    [dir="ltr"] .lang-ar{display:none}
+    [dir="rtl"] .lang-ar{display:block}
+    [dir="rtl"] .lang-en{display:none}
+
+    .lang-btn{padding:8px 12px;border-radius:6px;border:1px solid #ddd;background:#fff;cursor:pointer}
+    .lang-btn.active{background:var(--primary);color:#fff;border-color:var(--primary)}
+
+    /* Request Workers Page Styles */
+    .request-page {
+      padding: 80px 20px;
+      background-color: #f8f9fa;
+      min-height: 100vh;
+    }
+
+    .request-container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .request-header {
+      background: linear-gradient(135deg, #2c5f7f 0%, #4a8f5e 100%);
+      color: white;
+      padding: 4rem 2rem;
+      border-radius: 15px;
+      text-align: center;
+      margin-bottom: 3rem;
+      box-shadow: 0 8px 30px rgba(44, 95, 127, 0.2);
+    }
+
+    .request-header h1 {
+      font-size: 2.8rem;
+      margin-bottom: 1rem;
+      font-weight: bold;
+    }
+
+    .request-header p {
+      font-size: 1.1rem;
+      opacity: 0.95;
+      line-height: 1.8;
+    }
+
+    .request-form-wrapper {
+      background: white;
+      padding: 3rem 2rem;
+      border-radius: 12px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+    }
+
+    .form-group {
+      margin-bottom: 1.8rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.6rem;
+      font-weight: 600;
+      color: #2c5f7f;
+      font-size: 1rem;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 12px 15px;
+      border: 2px solid #e0e0e0;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-family: inherit;
+      transition: all 0.3s ease;
+      background-color: #f8f9fa;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: #4a8f5e;
+      background-color: white;
+      box-shadow: 0 0 0 3px rgba(74, 143, 94, 0.1);
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+
+    .form-group-full {
+      grid-column: 1 / -1;
+    }
+
+    .btn-submit {
+      width: 100%;
+      padding: 14px 30px;
+      background: linear-gradient(135deg, #2c5f7f 0%, #4a8f5e 100%);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(44, 95, 127, 0.2);
+      margin-top: 1rem;
+    }
+
+    .btn-submit:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 25px rgba(44, 95, 127, 0.3);
+    }
+
+    .btn-submit:active {
+      transform: translateY(-1px);
+    }
+
+    .form-info {
+      background: #e8f5e9;
+      padding: 1.5rem;
+      border-radius: 8px;
+      margin-bottom: 2rem;
+      border-right: 4px solid #4a8f5e;
+    }
+
+    .form-info h3 {
+      color: #2c5f7f;
+      margin-bottom: 0.5rem;
+      font-size: 1.1rem;
+    }
+
+    .form-info p {
+      color: #555;
+      margin: 0;
+      line-height: 1.6;
+    }
+
+    .required {
+      color: #e74c3c;
+      font-weight: bold;
+    }
+
+    .form-columns {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+
+    .form-column {
+      padding: 1rem;
+      background: #f0f5f8;
+      border-radius: 8px;
+    }
+
+    .form-column h3 {
+      color: #2c5f7f;
+      margin-bottom: 1rem;
+      font-size: 1.1rem;
+    }
+
+    @media (max-width: 768px) {
+      .request-page {
+        padding: 40px 15px;
+      }
+
+      .request-header {
+        padding: 3rem 1.5rem;
+      }
+
+      .request-header h1 {
+        font-size: 2rem;
+      }
+
+      .request-form-wrapper {
+        padding: 2rem 1.5rem;
+      }
+
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+
+      .form-columns {
+        grid-template-columns: 1fr;
+      }
+
+      .form-column {
+        padding: 1rem;
+      }
+    }
+
+    .success-message {
+      display: none;
+      background: #d4edda;
+      color: #155724;
+      padding: 1.5rem;
+      border-radius: 8px;
+      margin-bottom: 1.5rem;
+      border-left: 4px solid #28a745;
+    }
+
+    .success-message.show {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- شريط التنقل -->
+  <nav class="navbar">
+    <div class="container">
+      <div class="nav-brand">HR Connect Egypt</div>
+      <div style="display:flex;align-items:center;gap:12px">
+        <ul class="nav-links" style="margin:0;display:flex;align-items:center">
+          <li><a href="start.html" style="color:#4a8f5e;font-weight:700"><span class="lang-ar">⚡ HUB</span><span class="lang-en">⚡ HUB</span></a></li>
+          <li><a href="landing.html"><span class="lang-ar">الرئيسية</span><span class="lang-en">Home</span></a></li>
+          <li><a href="about.html"><span class="lang-ar">عن الشركة</span><span class="lang-en">About</span></a></li>
+          <li><a href="jobs.html"><span class="lang-ar">الوظائف</span><span class="lang-en">Jobs</span></a></li>
+          <li><a href="testimonials.html"><span class="lang-ar">آراء العملاء</span><span class="lang-en">Testimonials</span></a></li>
+          <li><a href="worker.html"><span class="lang-ar">قدّم على وظيفة</span><span class="lang-en">Apply for Job</span></a></li>
+          <li><a href="company.html"><span class="lang-ar">اطلب عمال</span><span class="lang-en">Request Workers</span></a></li>
+          <li><a href="index.html#contact"><span class="lang-ar">اتصل بنا</span><span class="lang-en">Contact</span></a></li>
+        </ul>
+        <div class="lang-switch" style="margin-left:16px;display:flex;gap:8px">
+          <button id="btnAr" class="lang-btn">عربى</button>
+          <button id="btnEn" class="lang-btn">English</button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- صفحة طلب عمال -->
+  <section class="request-page">
+    <div class="request-container">
+      <!-- Header -->
+      <div class="request-header">
+        <h1 id="pageTitle"><span class="lang-ar">🏢 اطلب عمال مدربين</span><span class="lang-en">Request Trained Workers</span></h1>
+        <p id="pageSubtitle"><span class="lang-ar">نوفر لك أفضل العمالة المدربة والموثوقة لشركتك ومصنعك</span><span class="lang-en">We provide the best trained and reliable workforce for your company and factory</span></p>
+      </div>
+
+      <!-- Form -->
+      <div class="request-form-wrapper">
+        <div class="form-info">
+          <h3 id="infoTitle"><span class="lang-ar">📋 معلومات مهمة</span><span class="lang-en">Important Information</span></h3>
+          <p id="infoText"><span class="lang-ar">يرجى ملء جميع الحقول المطلوبة</span><span class="lang-en">Please fill all required fields</span> <span class="required">*</span> <span class="lang-ar">بعناية لتقديم طلبك</span><span class="lang-en">carefully to submit your request</span></p>
+        </div>
+
+        <form id="companyRequestForm">
+          <!-- Section 1: Company Information -->
+          <div class="form-column">
+            <h3 id="companyInfoTitle"><span class="lang-ar">معلومات الشركة</span><span class="lang-en">Company Information</span></h3>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="companyNameInput" id="companyNameLabel"><span class="lang-ar">اسم الشركة</span><span class="lang-en">Company Name</span> <span class="required">*</span></label>
+              <input type="text" id="companyNameInput" placeholder="أدخل اسم شركتك / Enter your company name" required>
+            </div>
+            <div class="form-group">
+              <label for="companyPhoneInput" id="companyPhoneLabel"><span class="lang-ar">رقم الهاتف</span><span class="lang-en">Phone Number</span> <span class="required">*</span></label>
+              <input type="tel" id="companyPhoneInput" placeholder="01234567890" required>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="companyEmailInput" id="companyEmailLabel"><span class="lang-ar">البريد الإلكتروني</span><span class="lang-en">Email</span> <span class="required">*</span></label>
+              <input type="email" id="companyEmailInput" placeholder="company@example.com" required>
+            </div>
+            <div class="form-group">
+              <label for="companyAddressInput" id="companyAddressLabel"><span class="lang-ar">العنوان</span><span class="lang-en">Address</span> <span class="required">*</span></label>
+              <input type="text" id="companyAddressInput" placeholder="عنوان الشركة الكامل / Full company address" required>
+            </div>
+          </div>
+
+          <!-- Section 2: Job Request Information -->
+          <div class="form-column" style="margin-top: 2rem;">
+            <h3 id="jobRequestTitle"><span class="lang-ar">تفاصيل الطلب</span><span class="lang-en">Request Details</span></h3>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="jobTypeSelect" id="jobTypeLabel"><span class="lang-ar">نوع الوظيفة</span><span class="lang-en">Job Type</span> <span class="required">*</span></label>
+              <select id="jobTypeSelect" required>
+                <option value=""><span class="lang-ar">اختر نوع الوظيفة</span><span class="lang-en">Select job type</span></option>
+                <option value="electrical"><span class="lang-ar">كهربائي</span><span class="lang-en">Electrical</span></option>
+                <option value="mechanical"><span class="lang-ar">ميكانيكي</span><span class="lang-en">Mechanical</span></option>
+                <option value="construction"><span class="lang-ar">عمال بناء</span><span class="lang-en">Construction</span></option>
+                <option value="security"><span class="lang-ar">أمن وحراسة</span><span class="lang-en">Security</span></option>
+                <option value="cleaning"><span class="lang-ar">نظافة</span><span class="lang-en">Cleaning</span></option>
+                <option value="maintenance"><span class="lang-ar">صيانة</span><span class="lang-en">Maintenance</span></option>
+                <option value="other"><span class="lang-ar">أخرى</span><span class="lang-en">Other</span></option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="numWorkersInput" id="numWorkersLabel"><span class="lang-ar">عدد العمال المطلوبين</span><span class="lang-en">Number of Workers</span> <span class="required">*</span></label>
+              <input type="number" id="numWorkersInput" min="1" max="1000" placeholder="10" required>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="startDateInput" id="startDateLabel"><span class="lang-ar">تاريخ البدء المطلوب</span><span class="lang-en">Start Date</span> <span class="required">*</span></label>
+              <input type="date" id="startDateInput" required>
+            </div>
+            <div class="form-group">
+              <label for="durationInput" id="durationLabel"><span class="lang-ar">مدة التوظيف (بالأيام)</span><span class="lang-en">Duration (Days)</span> <span class="required">*</span></label>
+              <input type="number" id="durationInput" min="1" max="365" placeholder="30" required>
+            </div>
+          </div>
+
+          <!-- Section 3: Special Requirements -->
+          <div class="form-group form-group-full">
+            <label for="requirementsInput" id="requirementsLabel"><span class="lang-ar">متطلبات خاصة أو ملاحظات</span><span class="lang-en">Special Requirements or Notes</span></label>
+            <textarea id="requirementsInput" placeholder="أكتب أي متطلبات خاصة / Write any special requirements..."></textarea>
+          </div>
+
+          <!-- Submit Button -->
+          <button type="submit" class="btn-submit" id="submitBtn"><span class="lang-ar">إرسال الطلب</span><span class="lang-en">Submit Request</span></button>
+        </form>
+
+        <div class="success-message" id="successMessage">
+          <strong><span class="lang-ar">✓ تم إرسال طلبك بنجاح!</span><span class="lang-en">✓ Your request submitted successfully!</span></strong> <span class="lang-ar">سيقوم فريقنا بالتواصل معك قريباً.</span><span class="lang-en">Our team will contact you soon.</span>
+        </div>
+
+        <!-- Cross Promotion CTA -->
+        <div style="background:linear-gradient(135deg,rgba(44,95,127,0.95),rgba(74,143,94,0.95));color:white;padding:3rem 2rem;border-radius:15px;margin-top:3rem;text-align:center;box-shadow:0 8px 25px rgba(44,95,127,0.2)">
+          <h3 style="font-size:1.8rem;margin-bottom:1rem;font-weight:bold"><span class="lang-ar">🟢 تبحث عن وظيفة؟</span><span class="lang-en">🟢 Looking for a Job?</span></h3>
+          <p style="font-size:1.05rem;margin-bottom:2rem;opacity:0.95;line-height:1.7"><span class="lang-ar">اكتشف فرص العمل المتاحة والانضم إلى فريقنا من المتخصصين المدربين.</span><span class="lang-en">Discover available job opportunities and join our team of trained professionals.</span></p>
+          <a href="worker.html" style="display:inline-block;background:white;color:#2c5f7f;padding:14px 32px;border-radius:8px;text-decoration:none;font-weight:700;transition:all 0.3s;font-size:1rem"><span class="lang-ar">قدّم على وظيفة الآن</span><span class="lang-en">Apply Now</span> →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <script>
+    (function(){
+      const btnAr = document.getElementById('btnAr');
+      const btnEn = document.getElementById('btnEn');
+      function setLang(lang){
+        if(lang==='en'){
+          document.documentElement.lang='en';
+          document.documentElement.dir='ltr';
+          btnEn.classList.add('active'); btnAr.classList.remove('active');
+        } else {
+          document.documentElement.lang='ar';
+          document.documentElement.dir='rtl';
+          btnAr.classList.add('active'); btnEn.classList.remove('active');
+        }
+        // show only the opposite-language button
+        updateLangButtons(lang);
+        localStorage.setItem('companySiteLang',lang);
+      }
+
+      function updateLangButtons(lang){
+        if(lang==='en'){
+          btnAr.style.display = 'inline-block';
+          btnEn.style.display = 'none';
+        } else {
+          btnEn.style.display = 'inline-block';
+          btnAr.style.display = 'none';
+        }
+      }
+
+      btnAr.addEventListener('click',()=>setLang('ar'));
+      btnEn.addEventListener('click',()=>setLang('en'));
+      // initialize
+      const saved = localStorage.getItem('companySiteLang') || 'ar';
+      setLang(saved);
+    })();
+
+    // Handle form submission
+    document.getElementById('companyRequestForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      // Get form data
+      const formData = {
+        companyName: document.getElementById('companyNameInput').value,
+        phone: document.getElementById('companyPhoneInput').value,
+        email: document.getElementById('companyEmailInput').value,
+        address: document.getElementById('companyAddressInput').value,
+        jobType: document.getElementById('jobTypeSelect').value,
+        numWorkers: document.getElementById('numWorkersInput').value,
+        startDate: document.getElementById('startDateInput').value,
+        duration: document.getElementById('durationInput').value,
+        requirements: document.getElementById('requirementsInput').value
+      };
+
+      // Log form data for demonstration
+      console.log('Form Data:', formData);
+
+      // Show success message
+      document.getElementById('successMessage').classList.add('show');
+
+      // Reset form
+      this.reset();
+
+      // Hide success message after 5 seconds
+      setTimeout(() => {
+        document.getElementById('successMessage').classList.remove('show');
+      }, 5000);
+
+      // Scroll to success message
+      document.getElementById('successMessage').scrollIntoView({ behavior: 'smooth' });
+    });
+  </script>
+  <script src="index.js"></script>
+  <!-- Footer Start -->
+  <footer class="footer" style="background:#fff;padding:20px 0;margin-top:20px">
+    <div class="container" style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px">
+      <div>
+        <h4><span class="lang-ar">الشركة</span><span class="lang-en">Company</span></h4>
+        <ul style="list-style:none;padding:0;margin:0">
+          <li><a href=""><span class="lang-ar">معلوماتنا</span><span class="lang-en">About Us</span></a></li>
+          <li><a href=""><span class="lang-ar">خدماتنا</span><span class="lang-en">Services</span></a></li>
+          <li><a href=""><span class="lang-ar">سياسة الخصوصية</span><span class="lang-en">Privacy Policy</span></a></li>
+        </ul>
+      </div>
+      <div>
+        <h4><span class="lang-ar">روابط سريعة</span><span class="lang-en">Quick Links</span></h4>
+        <ul style="list-style:none;padding:0;margin:0">
+          <li><a href="landing.html"><span class="lang-ar">الرئيسية</span><span class="lang-en">Home</span></a></li>
+          <li><a href="about.html"><span class="lang-ar">عن الشركة</span><span class="lang-en">About</span></a></li>
+          <li><a href="index.html#contact"><span class="lang-ar">اتصل بنا</span><span class="lang-en">Contact</span></a></li>
+        </ul>
+      </div>
+      <div>
+        <h4><span class="lang-ar">اتصل بنا</span><span class="lang-en">Contact Us</span></h4>
+        <p style="margin:0"><span class="lang-ar">📍 القاهرة, مصر</span><span class="lang-en">📍 Cairo, Egypt</span></p>
+        <p style="margin:0"><span class="lang-ar">📞 01096705064</span><span class="lang-en">📞 +20 109 6705064</span></p>
+        <p style="margin:0">📧 hirenow@gmail.com</p>
+      </div>
+      <div style="align-self:flex-end">
+        <p>&copy; 2026 HR Connect Egypt</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

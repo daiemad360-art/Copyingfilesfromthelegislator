@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Available jobs at HR Connect Egypt">
+  <meta name="theme-color" content="#2c5f7f">
+  <title>Available Jobs - HR Connect Egypt</title>
+  <link rel="stylesheet" href="index.css">
+  <style>
+    .lang-btn.hidden { display: none; }
+    .rtl { direction: rtl; }
+    /* Jobs Page Styles */
+    .jobs-page {
+      padding: 80px 20px;
+      background: linear-gradient(135deg, #f0f5f8 0%, #e8f0f5 100%);
+      min-height: 100vh;
+    }
+
+    .jobs-container {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .jobs-header {
+      background: linear-gradient(135deg, #2c5f7f 0%, #4a8f5e 100%);
+      color: white;
+      padding: 3rem 2rem;
+      border-radius: 15px;
+      text-align: center;
+      margin-bottom: 3rem;
+      box-shadow: 0 10px 35px rgba(44, 95, 127, 0.25);
+      animation: slideDown 0.6s ease;
+    }
+
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .jobs-header h1 {
+      font-size: 2.8rem;
+      margin-bottom: 1rem;
+      font-weight: bold;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    .jobs-header p {
+      font-size: 1.1rem;
+      opacity: 0.95;
+      line-height: 1.8;
+    }
+
+    .jobs-filter {
+      background: white;
+      padding: 1.5rem;
+      border-radius: 10px;
+      margin-bottom: 2.5rem;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .filter-btn {
+      padding: 10px 20px;
+      border: 2px solid #2c5f7f;
+      background: white;
+      color: #2c5f7f;
+      border-radius: 25px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .filter-btn:hover,
+    .filter-btn.active {
+      background: #2c5f7f;
+      color: white;
+    }
+
+    .jobs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 2rem;
+      animation: slideUp 0.6s ease;
+    }
+
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .job-card {
+      background: white;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+      border-left: 5px solid #2c5f7f;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .job-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 8px 30px rgba(44, 95, 127, 0.2);
+      border-left-color: #4a8f5e;
+    }
+
+    .job-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 5px;
+      background: linear-gradient(90deg, #2c5f7f 0%, #4a8f5e 100%);
+    }
+
+    .job-badge {
+      display: inline-block;
+      background: #e8f5e9;
+      color: #2c5f7f;
+      padding: 0.4rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .job-title {
+      font-size: 1.4rem;
+      font-weight: bold;
+      color: #2c5f7f;
+      margin-bottom: 0.8rem;
+    }
+
+    .job-company {
+      color: #4a8f5e;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .job-details {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+      margin: 1.5rem 0;
+      font-size: 0.95rem;
+      color: #555;
+    }
+
+    .job-detail {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+    }
+
+    .job-detail-icon {
+      font-size: 1.2rem;
+      color: #4a8f5e;
+      width: 20px;
+      text-align: center;
+    }
+
+    .job-description {
+      color: #666;
+      line-height: 1.6;
+      margin: 1.5rem 0;
+      font-size: 0.95rem;
+    }
+
+    .job-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 1.5rem;
+      border-top: 1px solid #e0e0e0;
+      margin-top: 1.5rem;
+    }
+
+    .job-salary {
+      font-weight: 600;
+      color: #2c5f7f;
+      font-size: 1.1rem;
+    }
+
+    .job-apply-btn {
+      background: linear-gradient(135deg, #2c5f7f 0%, #4a8f5e 100%);
+      color: white;
+      border: none;
+      padding: 0.8rem 1.5rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      text-decoration: none;
+    }
+
+    .job-apply-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 12px rgba(44, 95, 127, 0.3);
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 3rem;
+      color: #666;
+    }
+
+    .empty-state h3 {
+      color: #2c5f7f;
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    @media (max-width: 768px) {
+      .jobs-page {
+        padding: 40px 15px;
+      }
+
+      .jobs-header {
+        padding: 2rem 1.5rem;
+      }
+
+      .jobs-header h1 {
+        font-size: 2rem;
+      }
+
+      .jobs-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .jobs-filter {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .filter-btn {
+        width: 100%;
+      }
+
+      .job-footer {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+      }
+
+      .job-apply-btn {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="container">
+      <div class="nav-brand">💼 HR Connect Egypt</div>
+      <ul class="nav-links">
+        <li><a href="start.html" style="color:#4a8f5e;font-weight:700">⚡ HUB</a></li>
+        <li><a href="landing.html" id="navHome">Home</a></li>
+        <li><a href="about.html" id="navAbout">About</a></li>
+        <li><a href="jobs.html" id="navJobs">Jobs</a></li>
+        <li><a href="testimonials.html" id="navTestimonials">Testimonials</a></li>
+        <li><a href="worker.html" id="navApply">Apply for Job</a></li>
+        <li><a href="company.html" id="navRequest">Request Workers</a></li>
+        <li><a href="index.html#contact" id="navContact">Contact</a></li>
+        <li class="lang-switch">
+          <button onclick="setLanguage('ar')" class="lang-btn hidden" id="btnArabic">عربي</button>
+          <button onclick="setLanguage('en')" class="lang-btn hidden" id="btnEnglish">EN</button>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <section class="jobs-page">
+    <div class="jobs-container">
+      <!-- Header -->
+      <div class="jobs-header">
+        <h1 id="jobsPageTitle">💼 Available Jobs</h1>
+        <p id="jobsPageSubtitle">Explore open positions and find opportunities that match your skills</p>
+      </div>
+
+      <!-- Filter -->
+      <div class="jobs-filter">
+        <button class="filter-btn active" onclick="filterJobs(event,'all')" id="filterAll">All</button>
+        <button class="filter-btn" onclick="filterJobs(event,'electrical')" id="filterElectrical">Electrical</button>
+        <button class="filter-btn" onclick="filterJobs(event,'mechanical')" id="filterMechanical">Mechanical</button>
+        <button class="filter-btn" onclick="filterJobs(event,'construction')" id="filterConstruction">Construction</button>
+        <button class="filter-btn" onclick="filterJobs(event,'security')" id="filterSecurity">Security</button>
+        <button class="filter-btn" onclick="filterJobs(event,'driver')" id="filterDriver">Driver</button>
+        <button class="filter-btn" onclick="filterJobs(event,'maintenance')" id="filterMaintenance">Maintenance</button>
+      </div>
+
+      <!-- Jobs Grid -->
+      <div class="jobs-grid" id="jobsGrid">
+        <!-- Jobs will be inserted here by JavaScript -->
+      </div>
+
+      <!-- Cross Promotion CTA -->
+      <div style="background:linear-gradient(135deg,rgba(44,95,127,0.95),rgba(74,143,94,0.95));color:white;padding:3rem 2rem;border-radius:15px;margin-top:3rem;text-align:center;box-shadow:0 8px 25px rgba(44,95,127,0.2)">
+        <h3 style="font-size:1.8rem;margin-bottom:1rem;font-weight:bold">🏢 Looking to Hire Trained Workers?</h3>
+        <p style="font-size:1.05rem;margin-bottom:2rem;opacity:0.95;line-height:1.7">Need skilled employees for your company? HR Connect Egypt provides vetted, trained professionals across all sectors.</p>
+        <a href="company.html" style="display:inline-block;background:white;color:#2c5f7f;padding:14px 32px;border-radius:8px;text-decoration:none;font-weight:700;transition:all 0.3s;font-size:1rem">Request Trained Workers Now →</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h4 id="footerAbout">About</h4>
+          <p id="footerAboutText">A company specialized in providing trained and reliable workforce</p>
+        </div>
+        <div class="footer-section">
+          <h4 id="footerLinks">Quick Links</h4>
+          <ul>
+            <li><a href="landing.html" id="footerHome">Home</a></li>
+            <li><a href="about.html" id="footerAboutLink">About</a></li>
+            <li><a href="index.html#contact" id="footerContact">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+      <hr>
+      <p id="footerText">&copy; 2026 HR Connect Egypt. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Jobs Data
+    const jobsData = {
+      ar: [
+        {
+          id: 1,
+          title: 'كهربائي متخصص',
+          category: 'electrical',
+          location: 'القاهرة',
+          salary: '5000 - 7000 جنيه',
+          experience: '3+ سنوات',
+          type: 'دائم',
+          description: 'نبحث عن كهربائي متخصص بخبرة في الأعمال التنقسية والتركيبات الكهربائية'
+        },
+        {
+          id: 2,
+          title: 'ميكانيكي سيارات',
+          category: 'mechanical',
+          location: 'الجيزة',
+          salary: '4500 - 6500 جنيه',
+          experience: '2+ سنوات',
+          type: 'دائم',
+          description: 'متطلب ميكانيكي ذو كفاءة عالية للعمل في ورشة إصلاح سيارات محترفة'
+        },
+        {
+          id: 3,
+          title: 'عامل بناء ماهر',
+          category: 'construction',
+          location: 'الإسكندرية',
+          salary: '4000 - 5500 جنيه',
+          experience: '5+ سنوات',
+          type: 'مؤقت',
+          description: 'نحتاج عامل بناء متميز للعمل في مشاريع البناء والتشييد'
+        },
+        {
+          id: 4,
+          title: 'حارس أمن',
+          category: 'security',
+          location: 'القاهرة',
+          salary: '3500 - 4500 جنيه',
+          experience: 'سنة فأكثر',
+          type: 'دائم',
+          description: 'بحثاً عن حارس أمن على درجة عالية من الانتباه والمسؤولية'
+        },
+        {
+          id: 5,
+          title: 'كهربائي منازل',
+          category: 'electrical',
+          location: 'القاهرة الجديدة',
+          salary: '4500 - 6000 جنيه',
+          experience: '2+ سنوات',
+          type: 'دائم',
+          description: 'لدينا طلب على كهربائي متخصص في أعمال المنازل والتركيبات الداخلية'
+        },
+        {
+          id: 6,
+          title: 'عامل نظافة',
+          category: 'construction',
+          location: 'الجيزة',
+          salary: '2500 - 3500 جنيه',
+          experience: 'بدون خبرة',
+          type: 'دائم',
+          description: 'نبحث عن عمال نظافة جادين وملتزمين للعمل في مباني وهياكل متعددة'
+        },
+        {
+          id: 7,
+          title: 'ميكانيكي معدات ثقيلة',
+          category: 'mechanical',
+          location: 'السادس من أكتوبر',
+          salary: '6000 - 8000 جنيه',
+          experience: '4+ سنوات',
+          type: 'دائم',
+          description: 'متطلب ميكانيكي متخصص في صيانة المعدات الثقيلة والجرارات'
+        },
+        {
+          id: 8,
+          title: 'حارس أمن ليلي',
+          category: 'security',
+          location: 'المعادي',
+          salary: '3500 - 4500 جنيه',
+          experience: 'سنة فأكثر',
+          type: 'دائم',
+          description: 'وظيفة حارس أمن للعمل بنوبات ليلية في منشأة تجارية كبرى'
+        },
+        {
+          id: 9,
+          title: 'مسؤول صيانة',
+          category: 'electrical',
+          location: 'القاهرة',
+          salary: '5500 - 7000 جنيه',
+          experience: '3+ سنوات',
+          type: 'دائم',
+          description: 'نحتاج لمسؤول صيانة على درجة عالية من الكفاءة والمسؤولية المهنية'
+        },
+        {
+          id: 10,
+          title: 'سائق شاحنة',
+          category: 'driver',
+          location: 'الجيزة',
+          salary: '4000 - 5500 جنيه',
+          experience: '2+ سنوات',
+          type: 'دائم',
+          description: 'نبحث عن سائق محترف برخصة سياقة سارية مع خبرة في قيادة الشاحنات'
+        },
+        {
+          id: 11,
+          title: 'سباك متخصص',
+          category: 'maintenance',
+          location: 'القاهرة',
+          salary: '3500 - 5000 جنيه',
+          experience: '2+ سنوات',
+          type: 'دائم',
+          description: 'متطلب سباك ذو خبرة في أعمال السباكة والتركيبات المائية'
+        },
+        {
+          id: 12,
+          title: 'عامل دهان',
+          category: 'construction',
+          location: 'الإسكندرية',
+          salary: '3000 - 4500 جنيه',
+          experience: '1+ سنة',
+          type: 'دائم',
+          description: 'نبحث عن عامل دهان ماهر للعمل على مشاريع الدهان والزخرفة'
+        },
+        {
+          id: 13,
+          title: 'نجار متخصص',
+          category: 'maintenance',
+          location: 'القاهرة الجديدة',
+          salary: '4000 - 5500 جنيه',
+          experience: '3+ سنوات',
+          type: 'دائم',
+          description: 'متطلب نجار متخصص في الأعمال الخشبية والتصاميم الحديثة'
+        },
+        {
+          id: 14,
+          title: 'حداد',
+          category: 'mechanical',
+          location: 'الجيزة',
+          salary: '3500 - 5000 جنيه',
+          experience: '2+ سنوات',
+          type: 'دائم',
+          description: 'نبحث عن حداد ماهر للعمل على الأعمال المعدنية والتصنيع'
+        },
+        {
+          id: 15,
+          title: 'مشغل معدات ثقيلة',
+          category: 'mechanical',
+          location: 'السادس من أكتوبر',
+          salary: '4500 - 6000 جنيه',
+          experience: '2+ سنوات',
+          type: 'دائم',
+          description: 'متطلب مشغل معدات ثقيلة بكفاءة عالية للمشاريع الإنشائية'
+        },
+        {
+          id: 16,
+          title: 'كهربائي توزيع',
+          category: 'electrical',
+          location: 'المنوفية',
+          salary: '4000 - 5500 جنيه',
+          experience: '2+ سنوات',
+          type: 'دائم',
+          description: 'نبحث عن كهربائي متخصص في شبكات التوزيع الكهربائية'
+        },
+        {
+          id: 17,
+          title: 'حارس بوابة',
+          category: 'security',
+          location: 'الشروق',
+          salary: '3000 - 4000 جنيه',
+          experience: '6 أشهر فأكثر',
+          type: 'دائم',
+          description: 'متطلب حارس بوابة ملتزم وقابل للتعامل مع الزوار'
+        },
+        {
+          id: 18,
+          title: 'عامل تنظيف صناعي',
+          category: 'construction',
+          location: 'القاهرة',
+          salary: '3000 - 4000 جنيه',
+          experience: '1+ سنة',
+          type: 'دائم',
+          description: 'نبحث عن عامل تنظيف صناعي متخصص في تنظيف المصانع والمستودعات'
+        },
+        {
+          id: 19,
+          title: 'سائق توصيل',
+          category: 'driver',
+          location: 'القاهرة',
+          salary: '3500 - 4500 جنيه',
+          experience: '1+ سنة',
+          type: 'دائم',
+          description: 'متطلب سائق توصيل بخبرة ملتزم ودقيق في التوقيت'
+        },
+        {
+          id: 20,
+          title: 'عامل تجميع',
+          category: 'maintenance',
+          location: 'الجيزة',
+          salary: '2500 - 3500 جنيه',
+          experience: 'بدون خبرة',
+          type: 'دائم',
+          description: 'نبحث عن عمال تجميع جادين للعمل في المصنع'
+        },
+        {
+          id: 21,
+          title: 'كهربائي تركيبات',
+          category: 'electrical',
+          location: 'الجيزة',
+          salary: '4500 - 6000 جنيه',
+          experience: '2+ سنوات',
+          type: 'دائم',
+          description: 'متطلب كهربائي متخصص في التركيبات الكهربائية الحديثة'
+        },
+        {
+          id: 22,
+          title: 'عامل مستودع',
+          category: 'construction',
+          location: 'القاهرة',
+          salary: '3000 - 4000 جنيه',
+          experience: '1+ سنة',
+          type: 'دائم',
+          description: 'نبحث عن عامل مستودع منظم وقابل للعمل تحت الضغط'
+        },
+        {
+          id: 23,
+          title: 'ميكانيكي صيانة',
+          category: 'mechanical',
+          location: 'القاهرة',
+          salary: '4000 - 5500 جنيه',
+          experience: '2+ سنوات',
+          type: 'دائم',
+          description: 'متطلب ميكانيكي للصيانة الدورية والإصلاحات'
+        },
+        {
+          id: 24,
+          title: 'حارس ملعب',
+          category: 'security',
+          location: 'المعادي',
+          salary: '3500 - 4500 جنيه',
+          experience: '1+ سنة',
+          type: 'دائم',
+          description: 'متطلب حارس ملعب ملتزم بالنظام والنظافة'
+        }
+      ],
+      en: [
+        {
+          id: 1,
+          title: 'Experienced Electrician',
+          category: 'electrical',
+          location: 'Cairo',
+          salary: '5000 - 7000 EGP',
+          experience: '3+ years',
+          type: 'Permanent',
+          description: 'We are looking for a specialized electrician with experience in electrical works and installations'
+        },
+        {
+          id: 2,
+          title: 'Car Mechanic',
+          category: 'mechanical',
+          location: 'Giza',
+          salary: '4500 - 6500 EGP',
+          experience: '2+ years',
+          type: 'Permanent',
+          description: 'We need a skilled mechanic to work in a professional car repair workshop'
+        },
+        {
+          id: 3,
+          title: 'Construction Worker',
+          category: 'construction',
+          location: 'Alexandria',
+          salary: '4000 - 5500 EGP',
+          experience: '5+ years',
+          type: 'Temporary',
+          description: 'We are looking for a skilled construction worker for building and construction projects'
+        },
+        {
+          id: 4,
+          title: 'Security Guard',
+          category: 'security',
+          location: 'Cairo',
+          salary: '3500 - 4500 EGP',
+          experience: '1+ year',
+          type: 'Permanent',
+          description: 'We need a security guard with high levels of attention and responsibility'
+        },
+        {
+          id: 5,
+          title: 'Residential Electrician',
+          category: 'electrical',
+          location: 'New Cairo',
+          salary: '4500 - 6000 EGP',
+          experience: '2+ years',
+          type: 'Permanent',
+          description: 'We have a position for a residential electrician specializing in home installations'
+        },
+        {
+          id: 6,
+          title: 'Cleaning Staff',
+          category: 'construction',
+          location: 'Giza',
+          salary: '2500 - 3500 EGP',
+          experience: 'No experience required',
+          type: 'Permanent',
+          description: 'We are looking for dedicated cleaning staff to work in various buildings and structures'
+        },
+        {
+          id: 7,
+          title: 'Heavy Equipment Mechanic',
+          category: 'mechanical',
+          location: '6th of October',
+          salary: '6000 - 8000 EGP',
+          experience: '4+ years',
+          type: 'Permanent',
+          description: 'We need a specialized mechanic for maintenance of heavy equipment and tractors'
+        },
+        {
+          id: 8,
+          title: 'Night Security Guard',
+          category: 'security',
+          location: 'Maadi',
+          salary: '3500 - 4500 EGP',
+          experience: '1+ year',
+          type: 'Permanent',
+          description: 'Security guard position for night shifts in a large commercial facility'
+        },
+        {
+          id: 9,
+          title: 'Maintenance Manager',
+          category: 'electrical',
+          location: 'Cairo',
+          salary: '5500 - 7000 EGP',
+          experience: '3+ years',
+          type: 'Permanent',
+          description: 'We need a maintenance manager with high professional competence and responsibility'
+        },
+        {
+          id: 10,
+          title: 'Truck Driver',
+          category: 'driver',
+          location: 'Giza',
+          salary: '4000 - 5500 EGP',
+          experience: '2+ years',
+          type: 'Permanent',
+          description: 'We are looking for a professional driver with a valid license and truck driving experience'
+        },
+        {
+          id: 11,
+          title: 'Plumber',
+          category: 'maintenance',
+          location: 'Cairo',
+          salary: '3500 - 5000 EGP',
+          experience: '2+ years',
+          type: 'Permanent',
+          description: 'We need an experienced plumber for plumbing and water installations'
+        },
+        {
+          id: 12,
+          title: 'Painter',
+          category: 'construction',
+          location: 'Alexandria',
+          salary: '3000 - 4500 EGP',
+          experience: '1+ year',
+          type: 'Permanent',
+          description: 'We are looking for a skilled painter for painting and decoration projects'
+        },
+        {
+          id: 13,
+          title: 'Carpenter',
+          category: 'maintenance',
+          location: 'New Cairo',
+          salary: '4000 - 5500 EGP',
+          experience: '3+ years',
+          type: 'Permanent',
+          description: 'We need a skilled carpenter specializing in woodwork and modern designs'
+        },
+        {
+          id: 14,
+          title: 'Blacksmith',
+          category: 'mechanical',
+          location: 'Giza',
+          salary: '3500 - 5000 EGP',
+          experience: '2+ years',
+          type: 'Permanent',
+          description: 'We are looking for a skilled blacksmith for metalwork and manufacturing'
+        },
+        {
+          id: 15,
+          title: 'Heavy Equipment Operator',
+          category: 'mechanical',
+          location: '6th of October',
+          salary: '4500 - 6000 EGP',
+          experience: '2+ years',
+          type: 'Permanent',
+          description: 'We need a skilled heavy equipment operator for construction projects'
+        },
+        {
+          id: 16,
+          title: 'Distribution Electrician',
+          category: 'electrical',
+          location: 'Monufia',
+          salary: '4000 - 5500 EGP',
+          experience: '2+ years',
+          type: 'Permanent',
+          description: 'We are looking for a specialist electrician in electrical distribution networks'
+        },
+        {
+          id: 17,
+          title: 'Gate Guard',
+          category: 'security',
+          location: 'Shorouk',
+          salary: '3000 - 4000 EGP',
+          experience: '6 months or more',
+          type: 'Permanent',
+          description: 'We need a committed gate guard capable of dealing with visitors'
+        },
+        {
+          id: 18,
+          title: 'Industrial Cleaner',
+          category: 'construction',
+          location: 'Cairo',
+          salary: '3000 - 4000 EGP',
+          experience: '1+ year',
+          type: 'Permanent',
+          description: 'We are looking for an industrial cleaning specialist for factories and warehouses'
+        },
+        {
+          id: 19,
+          title: 'Delivery Driver',
+          category: 'driver',
+          location: 'Cairo',
+          salary: '3500 - 4500 EGP',
+          experience: '1+ year',
+          type: 'Permanent',
+          description: 'We need a delivery driver who is committed and punctual'
+        },
+        {
+          id: 20,
+          title: 'Assembly Worker',
+          category: 'maintenance',
+          location: 'Giza',
+          salary: '2500 - 3500 EGP',
+          experience: 'No experience required',
+          type: 'Permanent',
+          description: 'We are looking for assembly workers for factory work'
+        },
+        {
+          id: 21,
+          title: 'Installation Electrician',
+          category: 'electrical',
+          location: 'Giza',
+          salary: '4500 - 6000 EGP',
+          experience: '2+ years',
+          type: 'Permanent',
+          description: 'We need an electrician specializing in modern electrical installations'
+        },
+        {
+          id: 22,
+          title: 'Warehouse Worker',
+          category: 'construction',
+          location: 'Cairo',
+          salary: '3000 - 4000 EGP',
+          experience: '1+ year',
+          type: 'Permanent',
+          description: 'We are looking for an organized warehouse worker capable of working under pressure'
+        },
+        {
+          id: 23,
+          title: 'Maintenance Mechanic',
+          category: 'mechanical',
+          location: 'Cairo',
+          salary: '4000 - 5500 EGP',
+          experience: '2+ years',
+          type: 'Permanent',
+          description: 'We need a mechanic for periodic maintenance and repairs'
+        },
+        {
+          id: 24,
+          title: 'Stadium Guard',
+          category: 'security',
+          location: 'Maadi',
+          salary: '3500 - 4500 EGP',
+          experience: '1+ year',
+          type: 'Permanent',
+          description: 'We need a committed stadium guard committed to order and cleanliness'
+        }
+      ]
+    };
+
+    let currentLanguage = localStorage.getItem('language') || 'en';
+    let currentFilter = 'all';
+
+    // Create Job Cards
+    function createJobCard(job) {
+      const typeColor = job.type.includes('دائم') || job.type === 'Permanent' ? '#28a745' : '#ff9800';
+      return `
+        <div class="job-card" data-category="${job.category}">
+          <div class="job-badge" style="background-color: ${typeColor}20; color: ${typeColor};">${job.type}</div>
+          <h3 class="job-title">${job.title}</h3>
+          <p class="job-company">💼 HR Connect Egypt</p>
+          
+          <div class="job-details">
+            <div class="job-detail">
+              <span class="job-detail-icon">📍</span>
+              <span>${job.location}</span>
+            </div>
+            <div class="job-detail">
+              <span class="job-detail-icon">⏱️</span>
+              <span>${job.experience}</span>
+            </div>
+            <div class="job-detail">
+              <span class="job-detail-icon">💰</span>
+              <span>${job.salary}</span>
+            </div>
+          </div>
+
+          <p class="job-description">${job.description}</p>
+
+          <div class="job-footer">
+            <span class="job-salary">${job.salary}</span>
+            <a href="worker.html" class="job-apply-btn">${currentLanguage === 'ar' ? 'تقدم الآن' : 'Apply Now'}</a>
+          </div>
+        </div>
+      `;
+    }
+
+    // Render Jobs
+    function renderJobs() {
+      const jobs = jobsData[currentLanguage] || [];
+      const jobsGrid = document.getElementById('jobsGrid');
+      if (!jobsGrid) return;
+
+      if (currentFilter === 'all') {
+        jobsGrid.innerHTML = jobs.map(job => createJobCard(job)).join('');
+      } else {
+        const filteredJobs = jobs.filter(job => job.category === currentFilter);
+        if (filteredJobs.length === 0) {
+          jobsGrid.innerHTML = `
+            <div class="empty-state" style="grid-column: 1 / -1;">
+              <h3>${currentLanguage === 'ar' ? 'لا توجد وظائف في هذه الفئة' : 'No jobs in this category'}</h3>
+              <p>${currentLanguage === 'ar' ? 'يرجى اختيار فئة أخرى أو تفقد جميع الوظائف' : 'Please select another category or view all jobs'}</p>
+            </div>
+          `;
+        } else {
+          jobsGrid.innerHTML = filteredJobs.map(job => createJobCard(job)).join('');
+        }
+      }
+    }
+
+    // Filter Jobs
+    function filterJobs(e, category) {
+      currentFilter = category || 'all';
+      document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+      if (e && e.target) e.target.classList.add('active');
+      renderJobs();
+    }
+
+    // Set language and update visible texts
+    const texts = {
+      en: {
+        navHome: 'Home', navAbout: 'About', navJobs: 'Jobs', navTestimonials: 'Testimonials', navContact: 'Contact',
+        jobsPageTitle: '💼 Available Jobs', jobsPageSubtitle: 'Explore open positions and find opportunities that match your skills',
+        filterAll: 'All', filterElectrical: 'Electrical', filterMechanical: 'Mechanical', filterConstruction: 'Construction', filterSecurity: 'Security', filterDriver: 'Driver', filterMaintenance: 'Maintenance',
+        footerAbout: 'About', footerAboutText: 'A company specialized in providing trained and reliable workforce', footerLinks: 'Quick Links', footerHome: 'Home', footerAboutLink: 'About', footerContact: 'Contact', footerText: '&copy; 2026 HR Connect Egypt. All rights reserved.'
+      },
+      ar: {
+        navHome: 'الرئيسية', navAbout: 'عن الشركة', navJobs: 'الوظائف', navTestimonials: 'آراء العملاء', navContact: 'اتصل بنا',
+        jobsPageTitle: '💼 الوظائف المتاحة', jobsPageSubtitle: 'استكشف فرص العمل المتاحة لدينا واختر ما يناسب مهاراتك وطموحاتك',
+        filterAll: 'جميع الوظائف', filterElectrical: 'كهربائي', filterMechanical: 'ميكانيكي', filterConstruction: 'بناء', filterSecurity: 'أمن', filterDriver: 'سائق', filterMaintenance: 'صيانة',
+        footerAbout: 'عن الشركة', footerAboutText: 'شركة متخصصة في توفير العمالة المدربة والموثوقة', footerLinks: 'الروابط السريعة', footerHome: 'الرئيسية', footerAboutLink: 'عن الشركة', footerContact: 'اتصل بنا', footerText: '&copy; 2026 شركة توظيف عمال. جميع الحقوق محفوظة.'
+      }
+    };
+
+    function setLanguage(lang) {
+      currentLanguage = lang;
+      localStorage.setItem('language', lang);
+      document.documentElement.lang = lang;
+      document.body.dir = lang === 'ar' ? 'rtl' : 'ltr';
+
+      // Toggle language buttons: show the other language button
+      const btnAr = document.getElementById('btnArabic');
+      const btnEn = document.getElementById('btnEnglish');
+      if (btnAr) btnAr.classList.toggle('hidden', lang === 'ar');
+      if (btnEn) btnEn.classList.toggle('hidden', lang === 'en');
+
+      // Update static texts
+      const t = texts[lang] || texts.en;
+      const setIf = (id, value) => { const el = document.getElementById(id); if (el) el.innerHTML = value; };
+      setIf('navHome', t.navHome);
+      setIf('navAbout', t.navAbout);
+      setIf('navJobs', t.navJobs);
+      setIf('navTestimonials', t.navTestimonials);
+      setIf('navContact', t.navContact);
+
+      setIf('jobsPageTitle', t.jobsPageTitle);
+      setIf('jobsPageSubtitle', t.jobsPageSubtitle);
+
+      setIf('filterAll', t.filterAll);
+      setIf('filterElectrical', t.filterElectrical);
+      setIf('filterMechanical', t.filterMechanical);
+      setIf('filterConstruction', t.filterConstruction);
+      setIf('filterSecurity', t.filterSecurity);
+      setIf('filterDriver', t.filterDriver);
+      setIf('filterMaintenance', t.filterMaintenance);
+
+      setIf('footerAbout', t.footerAbout);
+      setIf('footerAboutText', t.footerAboutText);
+      setIf('footerLinks', t.footerLinks);
+      setIf('footerHome', t.footerHome);
+      setIf('footerAboutLink', t.footerAboutLink);
+      setIf('footerContact', t.footerContact);
+      setIf('footerText', t.footerText);
+
+      renderJobs();
+    }
+
+    // Initialize
+    document.addEventListener('DOMContentLoaded', function() {
+      setLanguage(currentLanguage);
+      const btnAr = document.getElementById('btnArabic');
+      const btnEn = document.getElementById('btnEnglish');
+      if (btnAr) btnAr.classList.toggle('hidden', currentLanguage === 'ar');
+      if (btnEn) btnEn.classList.toggle('hidden', currentLanguage === 'en');
+      renderJobs();
+    });
+  </script>
+  <script src="index.js"></script>
+</body>
+</html>

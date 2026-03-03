@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="HR Connect Egypt - Unified Recruitment Platform Hub">
+  <meta name="theme-color" content="#2c5f7f">
+  <title>HR Connect Egypt - Unified Hub</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #f0f5f8 0%, #e8f0f5 100%);
+      min-height: 100vh;
+      color: #333;
+    }
+
+    :root {
+      --primary: #2c5f7f;
+      --accent: #4a8f5e;
+      --light: #f0f5f8;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    /* Header */
+    header {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+      color: white;
+      padding: 60px 20px;
+      text-align: center;
+      box-shadow: 0 10px 40px rgba(44, 95, 127, 0.2);
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+      background-size: 50px 50px;
+      animation: moveBackground 20s linear infinite;
+    }
+
+    @keyframes moveBackground {
+      0% { transform: translate(0, 0); }
+      100% { transform: translate(50px, 50px); }
+    }
+
+    header > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    header h1 {
+      font-size: 3.5rem;
+      margin-bottom: 10px;
+      font-weight: 800;
+      text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+      letter-spacing: 1px;
+    }
+
+    header p {
+      font-size: 1.3rem;
+      opacity: 0.95;
+      margin-bottom: 30px;
+      text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .header-buttons {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 12px 28px;
+      border: none;
+      border-radius: 8px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.95rem;
+    }
+
+    .btn-primary {
+      background: white;
+      color: var(--primary);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.2);
+      color: white;
+      border: 2px solid white;
+    }
+
+    .btn-secondary:hover {
+      background: white;
+      color: var(--primary);
+    }
+
+    /* Main Content */
+    .main-hub {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2rem;
+      margin: 4rem 0;
+    }
+
+    .hub-card {
+      background: white;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .hub-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 50px rgba(44, 95, 127, 0.2);
+    }
+
+    .card-header {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+      color: white;
+      padding: 2rem;
+      text-align: center;
+      font-size: 3rem;
+      min-height: 100px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .card-content {
+      padding: 2rem;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 1rem;
+    }
+
+    .card-description {
+      color: #666;
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+      flex-grow: 1;
+    }
+
+    .card-links {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+
+    .card-link {
+      display: inline-block;
+      padding: 10px 16px;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      color: white;
+      text-decoration: none;
+      border-radius: 6px;
+      font-weight: 600;
+      text-align: center;
+      transition: all 0.3s ease;
+      font-size: 0.9rem;
+    }
+
+    .card-link:hover {
+      transform: translateX(5px);
+      box-shadow: 0 6px 20px rgba(44, 95, 127, 0.3);
+    }
+
+    .card-link.secondary {
+      background: #f0f5f8;
+      color: var(--primary);
+      border: 2px solid var(--primary);
+    }
+
+    .card-link.secondary:hover {
+      background: var(--primary);
+      color: white;
+    }
+
+    /* Features Grid */
+    .features {
+      background: white;
+      padding: 3rem 2rem;
+      border-radius: 16px;
+      margin: 3rem 0;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+    }
+
+    .features h2 {
+      text-align: center;
+      color: var(--primary);
+      font-size: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+    }
+
+    .feature-item {
+      text-align: center;
+      padding: 2rem;
+      background: var(--light);
+      border-radius: 12px;
+      transition: all 0.3s ease;
+      border-left: 4px solid var(--accent);
+    }
+
+    .feature-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(74, 143, 94, 0.15);
+    }
+
+    .feature-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .feature-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+    }
+
+    .feature-text {
+      color: #666;
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    /* Quick Links */
+    .quick-links {
+      background: linear-gradient(135deg, rgba(44, 95, 127, 0.05), rgba(74, 143, 94, 0.05));
+      padding: 2rem;
+      border-radius: 16px;
+      margin: 2rem 0;
+    }
+
+    .quick-links h3 {
+      color: var(--primary);
+      margin-bottom: 1.5rem;
+      font-size: 1.4rem;
+    }
+
+    .links-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 1rem;
+    }
+
+    .quick-link {
+      display: inline-block;
+      padding: 12px 20px;
+      background: white;
+      color: var(--primary);
+      text-decoration: none;
+      border-radius: 8px;
+      text-align: center;
+      font-weight: 600;
+      border: 2px solid var(--primary);
+      transition: all 0.3s ease;
+      font-size: 0.9rem;
+    }
+
+    .quick-link:hover {
+      background: var(--primary);
+      color: white;
+      transform: translateY(-3px);
+    }
+
+    /* Footer */
+    footer {
+      background: var(--primary);
+      color: white;
+      padding: 2rem;
+      text-align: center;
+      margin-top: 4rem;
+      font-size: 0.9rem;
+    }
+
+    footer p {
+      opacity: 0.9;
+    }
+
+    footer a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 2.2rem;
+      }
+
+      header p {
+        font-size: 1rem;
+      }
+
+      .header-buttons {
+        flex-direction: column;
+      }
+
+      .btn {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .main-hub {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+
+      .links-grid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      }
+    }
+
+    /* Animations */
+    .fade-in {
+      animation: fadeIn 0.6s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .hub-card {
+      animation: fadeIn 0.6s ease-out;
+    }
+
+    .hub-card:nth-child(2) {
+      animation-delay: 0.1s;
+    }
+
+    .hub-card:nth-child(3) {
+      animation-delay: 0.2s;
+    }
+
+    .hub-card:nth-child(4) {
+      animation-delay: 0.3s;
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="container">
+      <div class="nav-brand">💼 HR Connect Egypt</div>
+      <ul class="nav-links">
+        <li><a href="start.html" style="color:#4a8f5e;font-weight:700">⚡ HUB</a></li>
+        <li><a href="landing.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="jobs.html">Jobs</a></li>
+        <li><a href="testimonials.html">Testimonials</a></li>
+        <li><a href="worker.html">Apply for Job</a></li>
+        <li><a href="company.html">Request Workers</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Header -->
+  <header>
+    <h1>💼 HR Connect Egypt</h1>
+    <p>Your Complete Recruitment & Workforce Solution Hub</p>
+    <div class="header-buttons">
+      <a href="#jobs-section" class="btn btn-primary">🔍 Browse Jobs</a>
+      <a href="#apply-section" class="btn btn-primary">📋 Apply Now</a>
+      <a href="#request-section" class="btn btn-secondary">🏢 Request Workers</a>
+    </div>
+  </header>
+
+  <div class="container">
+
+    <!-- Main Hub -->
+    <section class="main-hub">
+
+      <!-- Job Seeker Hub -->
+      <div class="hub-card" id="jobs-section">
+        <div class="card-header">🟢</div>
+        <div class="card-content">
+          <h2 class="card-title">👨‍💼 For Job Seekers</h2>
+          <p class="card-description">
+            Explore exciting employment opportunities across multiple sectors including electrical, mechanical, construction, security, and more. Find the perfect job that matches your skills and start your career journey with us.
+          </p>
+          <div class="card-links">
+            <a href="jobs.html" class="card-link">📊 View All Jobs</a>
+            <a href="worker.html" class="card-link">📝 Submit Application</a>
+            <a href="about.html" class="card-link secondary">ℹ️ About Us</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Employer Hub -->
+      <div class="hub-card" id="request-section">
+        <div class="card-header">🔵</div>
+        <div class="card-content">
+          <h2 class="card-title">🏢 For Employers</h2>
+          <p class="card-description">
+            Need trained and vetted professionals for your company? Request skilled workers from our pool of qualified candidates. We specialize in providing reliable workforce solutions for all industries.
+          </p>
+          <div class="card-links">
+            <a href="company.html" class="card-link">🤝 Request Workers</a>
+            <a href="testimonials.html" class="card-link">⭐ Client Reviews</a>
+            <a href="about.html" class="card-link secondary">ℹ️ Learn More</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Explore Hub -->
+      <div class="hub-card">
+        <div class="card-header">📍</div>
+        <div class="card-content">
+          <h2 class="card-title">🗺️ Explore Platform</h2>
+          <p class="card-description">
+            Navigate through our complete recruitment platform. Access job listings, submit applications, request workers, read testimonials, and learn more about what makes HR Connect Egypt your trusted partner.
+          </p>
+          <div class="card-links">
+            <a href="sitemap.html" class="card-link">🗺️ Full Sitemap</a>
+            <a href="landing.html" class="card-link">🚀 Landing Page</a>
+            <a href="index.html" class="card-link secondary">🏠 Home</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Access -->
+      <div class="hub-card">
+        <div class="card-header">⚡</div>
+        <div class="card-content">
+          <h2 class="card-title">⚡ Quick Access</h2>
+          <p class="card-description">
+            Get rapid access to all major platform features. Whether you're looking for jobs, applying for positions, requesting workers, or need more information - everything is just one click away.
+          </p>
+          <div class="card-links">
+            <a href="#" class="card-link" onclick="document.querySelector('.quick-links').scrollIntoView({behavior:'smooth'}); return false;">🔗 All Links</a>
+            <a href="testimonials.html" class="card-link">✨ Success Stories</a>
+            <a href="index.html#contact" class="card-link secondary">📞 Contact</a>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+      <h2>✨ Why Choose HR Connect Egypt?</h2>
+      <div class="feature-grid">
+        <div class="feature-item">
+          <div class="feature-icon">🎯</div>
+          <div class="feature-title">Precision Matching</div>
+          <div class="feature-text">Advanced algorithms match job requirements with perfect candidates</div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">🏆</div>
+          <div class="feature-title">Vetted Professionals</div>
+          <div class="feature-text">All candidates are trained, qualified, and thoroughly vetted</div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">⚡</div>
+          <div class="feature-title">Fast Processing</div>
+          <div class="feature-text">Quick hiring process from posting to candidate screening</div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">💼</div>
+          <div class="feature-title">Multiple Sectors</div>
+          <div class="feature-text">Expertise across electrical, mechanical, construction, security & more</div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">🤝</div>
+          <div class="feature-title">Expert Support</div>
+          <div class="feature-text">Dedicated team providing personalized assistance throughout the process</div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">📊</div>
+          <div class="feature-title">Proven Track Record</div>
+          <div class="feature-text">Trusted by numerous companies with positive client testimonials</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Quick Links Section -->
+    <section class="quick-links">
+      <h3>🔗 All Platform Links</h3>
+      <div class="links-grid">
+        <a href="index.html" class="quick-link">🏠 Home</a>
+        <a href="landing.html" class="quick-link">🚀 Landing</a>
+        <a href="about.html" class="quick-link">ℹ️ About</a>
+        <a href="jobs.html" class="quick-link">💼 Jobs</a>
+        <a href="worker.html" class="quick-link">📋 Apply</a>
+        <a href="company.html" class="quick-link">🏢 Request</a>
+        <a href="testimonials.html" class="quick-link">⭐ Reviews</a>
+        <a href="sitemap.html" class="quick-link">🗺️ Sitemap</a>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2026 <strong>HR Connect Egypt</strong> - Your Trusted Recruitment Partner</p>
+    <p style="margin-top: 1rem; font-size: 0.85rem;">
+      📍 Cairo, Egypt | 📞 +20 109 6705064 | 📧 hirenow@gmail.com
+    </p>
+    <p style="margin-top: 1rem;">
+      <a href="sitemap.html">Sitemap</a> | <a href="start.html">Hub</a>
+    </p>
+  </footer>
+
+  <script>
+    // Add animations on scroll
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -100px 0px'
+    };
+
+    const observer = new IntersectionObserver(function(entries) {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('fade-in');
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.hub-card, .feature-item').forEach(el => {
+      observer.observe(el);
+    });
+  </script>
+
+</body>
+</html>

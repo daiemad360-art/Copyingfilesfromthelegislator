@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Sitemap - HR Connect Egypt - Workforce Recruitment Solutions">
+  <meta name="theme-color" content="#2c5f7f">
+  <title>Sitemap - HR Connect Egypt</title>
+  <link rel="stylesheet" href="index.css">
+  <style>
+    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; background: #fafbfc; color: #333; }
+    
+    :root {
+      --primary: #2c5f7f;
+      --accent: #4a8f5e;
+      --light-bg: #f0f5f8;
+    }
+
+    .navbar {
+      background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);
+      border-bottom: 1px solid #e8e8e8;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+      padding: 14px 0;
+    }
+
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+    .navbar .container { display: flex; align-items: center; justify-content: space-between; }
+    
+    .nav-brand { font-size: 1.5rem; font-weight: 700; color: var(--primary); }
+    
+    .nav-links {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      gap: 24px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      color: #333;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s;
+      font-size: 0.95rem;
+    }
+
+    .nav-links a:hover { color: var(--accent); }
+
+    .sitemap-page {
+      padding: 80px 20px;
+      background: linear-gradient(135deg, var(--light-bg) 0%, #e8f0f5 100%);
+      min-height: 100vh;
+    }
+
+    .sitemap-container { max-width: 1000px; margin: 0 auto; }
+
+    .sitemap-header {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+      color: white;
+      padding: 4rem 2rem;
+      border-radius: 16px;
+      text-align: center;
+      margin-bottom: 3rem;
+      box-shadow: 0 10px 35px rgba(44, 95, 127, 0.25);
+      animation: slideDown 0.6s ease;
+    }
+
+    @keyframes slideDown {
+      from { opacity: 0; transform: translateY(-30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .sitemap-header h1 {
+      font-size: 2.8rem;
+      margin: 0 0 1rem 0;
+      font-weight: bold;
+    }
+
+    .sitemap-header p {
+      font-size: 1.1rem;
+      opacity: 0.95;
+      line-height: 1.8;
+      margin: 0;
+    }
+
+    .sitemap-content {
+      background: white;
+      padding: 3rem;
+      border-radius: 16px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+      animation: slideUp 0.6s ease;
+    }
+
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .section {
+      margin-bottom: 2.5rem;
+    }
+
+    .section:last-child { margin-bottom: 0; }
+
+    .section h2 {
+      color: var(--primary);
+      font-size: 1.8rem;
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 3px solid var(--accent);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .section-description {
+      color: #666;
+      margin-bottom: 1.5rem;
+      line-height: 1.7;
+    }
+
+    .links-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1rem;
+    }
+
+    .link-card {
+      background: #f0f5f8;
+      padding: 1.5rem;
+      border-radius: 12px;
+      border-left: 4px solid var(--accent);
+      transition: all 0.3s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .link-card:hover {
+      background: #e8f0f5;
+      transform: translateX(5px);
+      box-shadow: 0 4px 15px rgba(44, 95, 127, 0.15);
+    }
+
+    .link-card h3 {
+      color: var(--primary);
+      margin: 0 0 0.5rem 0;
+      font-size: 1.1rem;
+    }
+
+    .link-card p {
+      color: #666;
+      margin: 0 0 1rem 0;
+      font-size: 0.9rem;
+      line-height: 1.5;
+      flex-grow: 1;
+    }
+
+    .link-card a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: gap 0.3s;
+    }
+
+    .link-card a:hover { gap: 10px; }
+
+    .link-card a::after { content: "➜"; }
+
+    .sitemap-structure {
+      background: #f9f9f9;
+      padding: 2rem;
+      border-radius: 12px;
+      margin-top: 2rem;
+      font-family: 'Courier New', monospace;
+      font-size: 0.9rem;
+      overflow-x: auto;
+    }
+
+    .site-tree {
+      color: var(--primary);
+      line-height: 1.8;
+    }
+
+    .tree-item { margin-left: 20px; }
+    .tree-line { color: #ccc; }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      color: #999;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 768px) {
+      .sitemap-page { padding: 40px 15px; }
+      .sitemap-header { padding: 2.5rem 1.5rem; }
+      .sitemap-header h1 { font-size: 2rem; }
+      .sitemap-content { padding: 1.5rem; }
+      .links-list { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="container" style="display:flex;align-items:center;gap:20px;flex-wrap:wrap">
+      <div class="nav-brand">💼 HR Connect Egypt</div>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="landing.html">Landing</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="start.html" style="color:#4a8f5e;font-weight:700">⚡ HUB</a></li>
+        <li><a href="jobs.html">Jobs</a></li>
+        <li><a href="testimonials.html">Testimonials</a></li>
+        <li><a href="worker.html">Apply for Job</a></li>
+        <li><a href="company.html">Request Workers</a></li>
+        <li><a href="sitemap.html" style="color:var(--accent);font-weight:700">📍 Sitemap</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <section class="sitemap-page">
+    <div class="sitemap-container">
+      
+      <!-- Header -->
+      <div class="sitemap-header">
+        <h1>🗺️ Website Sitemap</h1>
+        <p>Complete guide to our HR Connect Egypt recruitment platform</p>
+      </div>
+
+      <!-- Content -->
+      <div class="sitemap-content">
+
+        <!-- Main Pages Section -->
+        <div class="section">
+          <h2>📄 Main Pages</h2>
+          <p class="section-description">Essential pages that form the core of our recruitment platform</p>
+          <div class="links-list">
+            <div class="link-card">
+              <h3>🏠 Home</h3>
+              <p>Main landing page introducing HR Connect Egypt recruitment services and key offerings</p>
+              <a href="index.html">Visit Home</a>
+            </div>
+            <div class="link-card">
+              <h3>🚀 Landing</h3>
+              <p>Professional landing page showcasing company expertise and workforce solutions</p>
+              <a href="landing.html">View Landing</a>
+            </div>
+            <div class="link-card">
+              <h3>ℹ️ About us</h3>
+              <p>Learn about our company, mission, values, and why we're trusted for recruitment</p>
+              <a href="about.html">About us</a>
+            </div>
+            <div class="link-card">
+              <h3>⭐ Testimonials</h3>
+              <p>Read customer reviews and success stories from companies we've served</p>
+              <a href="testimonials.html">See Reviews</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Job Opportunities Section -->
+        <div class="section">
+          <h2>💼 Job & Employment</h2>
+          <p class="section-description">Find employment opportunities and submit your job applications</p>
+          <div class="links-list">
+            <div class="link-card">
+              <h3>🟢 Available Jobs</h3>
+              <p>Browse current job openings in various categories: electrical, mechanical, construction, security, and more</p>
+              <a href="jobs.html">View Jobs</a>
+            </div>
+            <div class="link-card">
+              <h3>📝 Apply for a Job</h3>
+              <p>Submit your application and join our pool of qualified professionals</p>
+              <a href="worker.html">Apply Now</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Business Solutions Section -->
+        <div class="section">
+          <h2>🏢 Business Solutions</h2>
+          <p class="section-description">Request trained workers and workforce solutions for your company</p>
+          <div class="links-list">
+            <div class="link-card">
+              <h3>🔵 Request Workers</h3>
+              <p>Companies can request trained and vetted workers for various positions and projects</p>
+              <a href="company.html">Request Now</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Site Structure -->
+        <div class="sitemap-structure">
+          <h3 style="color:var(--primary);margin-top:0">Website Structure</h3>
+          <div class="site-tree">
+            HR Connect Egypt/
+            <div class="tree-item">├─ 📄 index.html (Home)</div>
+            <div class="tree-item">├─ 📄 landing.html (Landing Page)</div>
+            <div class="tree-item">├─ 📄 about.html (About Company)</div>
+            <div class="tree-item">├─ 📄 jobs.html (Job Listings)</div>
+            <div class="tree-item">├─ 📄 testimonials.html (Customer Reviews)</div>
+            <div class="tree-item">├─ 📄 worker.html (Job Application)</div>
+            <div class="tree-item">├─ 📄 company.html (Request Workers)</div>
+            <div class="tree-item">├─ 📄 sitemap.html (You are here)</div>
+            <div class="tree-item">├─ 🎨 index.css (Styling)</div>
+            <div class="tree-item">└─ 📝 index.js (Scripts)</div>
+          </div>
+        </div>
+
+        <!-- Quick Links Section -->
+        <div class="section" style="margin-top:2.5rem">
+          <h2>🔗 Quick Navigation</h2>
+          <p class="section-description">Fast access to most commonly used pages</p>
+          <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1rem">
+            <a href="index.html" style="display:inline-block;padding:12px 20px;background:var(--primary);color:white;text-decoration:none;border-radius:8px;text-align:center;transition:background 0.3s;font-weight:600" onmouseover="this.style.background='var(--accent)'"  onmouseout="this.style.background='var(--primary)'">
+              🏠 Home
+            </a>
+            <a href="jobs.html" style="display:inline-block;padding:12px 20px;background:var(--primary);color:white;text-decoration:none;border-radius:8px;text-align:center;transition:background 0.3s;font-weight:600" onmouseover="this.style.background='var(--accent)'"  onmouseout="this.style.background='var(--primary)'">
+              🔍 Browse Jobs
+            </a>
+            <a href="worker.html" style="display:inline-block;padding:12px 20px;background:var(--accent);color:white;text-decoration:none;border-radius:8px;text-align:center;transition:background 0.3s;font-weight:600" onmouseover="this.style.background='var(--primary)'"  onmouseout="this.style.background='var(--accent)'">
+              ✍️ Apply Now
+            </a>
+            <a href="company.html" style="display:inline-block;padding:12px 20px;background:var(--accent);color:white;text-decoration:none;border-radius:8px;text-align:center;transition:background 0.3s;font-weight:600" onmouseover="this.style.background='var(--primary)'"  onmouseout="this.style.background='var(--accent)'">
+              🏢 Request Workers
+            </a>
+            <a href="about.html" style="display:inline-block;padding:12px 20px;background:var(--primary);color:white;text-decoration:none;border-radius:8px;text-align:center;transition:background 0.3s;font-weight:600" onmouseover="this.style.background='var(--accent)'"  onmouseout="this.style.background='var(--primary)'">
+              ℹ️ About Us
+            </a>
+            <a href="testimonials.html" style="display:inline-block;padding:12px 20px;background:var(--primary);color:white;text-decoration:none;border-radius:8px;text-align:center;transition:background 0.3s;font-weight:600" onmouseover="this.style.background='var(--accent)'"  onmouseout="this.style.background='var(--primary)'">
+              ⭐ Reviews
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2026 HR Connect Egypt. All rights reserved. | <a href="sitemap.html" style="color:#2c5f7f;text-decoration:none;font-weight:600">Sitemap</a></p>
+  </footer>
+
+</body>
+</html>

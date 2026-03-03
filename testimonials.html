@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Customer reviews and testimonials - HR Connect Egypt">
+  <meta name="theme-color" content="#2c5f7f">
+  <title>Customer Testimonials - HR Connect Egypt</title>
+  <link rel="stylesheet" href="index.css">
+  <style>
+    .testimonials-page {
+      padding: 80px 20px;
+      background: linear-gradient(135deg, #f0f5f8 0%, #e8f0f5 100%);
+      min-height: 100vh;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .testimonials-page::before,
+    .testimonials-page::after {
+      content: '';
+      position: absolute;
+      background: linear-gradient(135deg, rgba(44, 95, 127, 0.8) 0%, rgba(74, 143, 94, 0.8) 100%), 
+          url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1200&h=600&fit=crop') center/cover no-repeat fixed;
+      background-size: cover;
+      background-position: center;
+      opacity: 0.12;
+      filter: blur(6px) saturate(0.9);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .testimonials-page::before {
+      left: -80px;
+      top: -30px;
+    }
+
+    .testimonials-page::after {
+      right: -80px;
+      bottom: -10px;
+      opacity: 0.1;
+    }
+
+    .testimonials-container { z-index: 3; position: relative; max-width: 1100px; margin: 0 auto; }
+
+    .testimonials-header {
+      background: linear-gradient(rgba(44, 95, 127, 0.75), rgba(74, 143, 94, 0.75)), 
+            url('https://images.unsplash.com/photo-1552992438-f18ea83e75e8?w=1200&h=600&fit=crop') center/cover no-repeat fixed;
+      color: white;
+      padding: 4rem 2rem;
+      border-radius: 16px;
+      text-align: center;
+      margin-bottom: 3rem;
+      box-shadow: 0 12px 40px rgba(44, 95, 127, 0.3);
+      animation: slideDown 0.7s ease;
+      position: relative;
+      overflow: hidden;
+      min-height: 320px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    @keyframes slideDown {
+      from { opacity: 0; transform: translateY(-30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .testimonials-header h1 {
+      font-size: 2.6rem;
+      margin-bottom: 1rem;
+      margin-top: 0;
+      font-weight: 800;
+      text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.4);
+      position: relative;
+      z-index: 3;
+    }
+
+    .testimonials-header p {
+      font-size: 1rem;
+      opacity: 0.96;
+      line-height: 1.7;
+      text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.3);
+      position: relative;
+      z-index: 3;
+      margin: 0;
+    }
+
+    .testimonials-filter {
+      background: white;
+      padding: 1.2rem;
+      border-radius: 10px;
+      margin-bottom: 2.5rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      display: flex;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .filter-btn {
+      padding: 8px 18px;
+      border: 2px solid #2c5f7f;
+      background: white;
+      color: #2c5f7f;
+      border-radius: 22px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: all 0.3s ease;
+    }
+
+    .filter-btn:hover, .filter-btn.active {
+      background: #2c5f7f;
+      color: white;
+    }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 2rem;
+      animation: slideUp 0.6s ease;
+    }
+
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .testimonial-card {
+      background: white;
+      padding: 1.8rem;
+      border-radius: 12px;
+      box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+      transition: all 0.3s ease;
+      border-top: 4px solid #2c5f7f;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .testimonial-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 8px 28px rgba(44, 95, 127, 0.15);
+      border-top-color: #4a8f5e;
+    }
+
+    .customer-info {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+      margin-bottom: 1.2rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .customer-image {
+      width: 55px;
+      height: 55px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2.5px solid #4a8f5e;
+      flex-shrink: 0;
+    }
+
+    .customer-details { flex-grow: 1; }
+
+    .customer-name {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #2c5f7f;
+      margin-bottom: 0.2rem;
+    }
+
+    .customer-title {
+      color: #4a8f5e;
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+
+    .rating {
+      display: flex;
+      gap: 0.25rem;
+      margin-top: 0.4rem;
+      font-size: 1rem;
+    }
+
+    .star { color: #ffc107; }
+    .star.empty { color: #e0e0e0; }
+
+    .testimonial-text {
+      color: #555;
+      line-height: 1.7;
+      margin: 1.2rem 0;
+      font-size: 0.9rem;
+      font-style: italic;
+    }
+
+    .testimonial-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 1rem;
+      border-top: 1px solid #e8e8e8;
+      font-size: 0.8rem;
+      color: #999;
+    }
+
+    .verified-badge {
+      background: #d4edda;
+      color: #155724;
+      padding: 0.25rem 0.7rem;
+      border-radius: 16px;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      font-size: 0.8rem;
+    }
+
+    .rating-summary {
+      text-align: center;
+      padding: 2rem;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+      margin-bottom: 2.5rem;
+    }
+
+    .rating-summary h3 {
+      color: #2c5f7f;
+      font-size: 1.3rem;
+      margin-bottom: 1.2rem;
+      font-weight: 700;
+    }
+
+    .summary-stats {
+      display: flex;
+      justify-content: center;
+      gap: 2.5rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .stat-box { text-align: center; }
+
+    .stat-number {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: #4a8f5e;
+    }
+
+    .stat-label {
+      color: #666;
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 3rem;
+      color: #666;
+      grid-column: 1 / -1;
+    }
+
+    .empty-state h3 {
+      color: #2c5f7f;
+      font-size: 1.4rem;
+      margin-bottom: 0.8rem;
+      font-weight: 700;
+    }
+
+    .lang-btn.hidden { display: none; }
+
+    @media (max-width: 768px) {
+      .testimonials-page { padding: 40px 15px; }
+      .testimonials-header { padding: 2.5rem 1.5rem; min-height: 260px; }
+      .testimonials-header h1 { font-size: 1.8rem; }
+      .testimonials-header p { font-size: 0.95rem; }
+      .testimonials-grid { grid-template-columns: 1fr; }
+      .testimonials-filter { flex-direction: column; align-items: stretch; }
+      .filter-btn { width: 100%; }
+      .summary-stats { gap: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="container">
+      <div class="nav-brand">💼 HR Connect Egypt</div>
+      <ul class="nav-links">
+        <li><a href="start.html" style="color:#4a8f5e;font-weight:700">⚡ HUB</a></li>
+        <li><a href="landing.html" id="navHome">Home</a></li>
+        <li><a href="about.html" id="navAbout">About</a></li>
+        <li><a href="jobs.html" id="navJobs">Jobs</a></li>
+        <li><a href="testimonials.html" id="navTestimonials">Testimonials</a></li>
+        <li><a href="worker.html" id="navApply">Apply for Job</a></li>
+        <li><a href="company.html" id="navRequest">Request Workers</a></li>
+        <li><a href="index.html#contact" id="navContact">Contact</a></li>
+        <li class="lang-switch">
+          <button onclick="setLanguage('ar')" class="lang-btn hidden" id="btnArabic">عربي</button>
+          <button onclick="setLanguage('en')" class="lang-btn hidden" id="btnEnglish">EN</button>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <section class="testimonials-page">
+    <div class="testimonials-container">
+      <div class="testimonials-header">
+        <h1 id="testimonialsPageTitle">⭐ Customer Testimonials</h1>
+        <p id="testimonialsPageSubtitle">Read reviews from our satisfied clients about our services</p>
+      </div>
+
+      <div class="rating-summary">
+        <h3 id="ratingSummaryTitle">Our Customer Ratings</h3>
+        <div class="summary-stats">
+          <div class="stat-box">
+            <div class="stat-number">4.8</div>
+            <div class="stat-label" id="avgLabel">Average Rating</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-number">50+</div>
+            <div class="stat-label" id="reviewsLabel">Total Reviews</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-number">98%</div>
+            <div class="stat-label" id="satisfactionLabel">Customer Satisfaction</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonials-filter">
+        <button class="filter-btn active" onclick="filterTestimonials(event, 'all')" id="filterAll">All Reviews</button>
+        <button class="filter-btn" onclick="filterTestimonials(event, 5)" id="filter5Stars">⭐⭐⭐⭐⭐ Excellent</button>
+        <button class="filter-btn" onclick="filterTestimonials(event, 4)" id="filter4Stars">⭐⭐⭐⭐ Very Good</button>
+        <button class="filter-btn" onclick="filterTestimonials(event, 3)" id="filter3Stars">⭐⭐⭐ Good</button>
+      </div>
+
+      <div class="testimonials-grid" id="testimonialsGrid"></div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h4 id="footerCompany">Company</h4>
+          <p id="footerAboutText">A company specialized in providing trained and reliable workforce</p>
+        </div>
+        <div class="footer-section">
+          <h4 id="footerLinks">Quick Links</h4>
+          <ul>
+            <li><a href="">Home</a></li>
+            <li><a href="">About</a></li>
+            <li><a href="">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+      <hr>
+      <p id="footerText">&copy; 2026 HR Connect Egypt. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    const testimonialsData = {
+      ar: [
+        { id: 1, name: 'محمد أحمد', title: 'صاحب مصنع', rating: 5, image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop', text: 'خدمة ممتازة جداً! قدمت لنا عمال ماهرين وملتزمين. تعاملهم احترافي وسرعة التوظيف لم نشهدها من قبل.', date: '2026-02-15', verified: true },
+        { id: 2, name: 'فاطمة علي', title: 'مديرة موارد بشرية', rating: 5, image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&h=200&fit=crop', text: 'شركة موثوقة وذات سمعة عالية. العمال المقدمين من هنا يتمتعون بمستوى عالي من الكفاءة والالتزام.', date: '2026-02-14', verified: true },
+        { id: 3, name: 'أحمد الشرقاوي', title: 'مقاول', rating: 4, image: 'https://images.unsplash.com/photo-1438761681033-6461e9cfe266?w=200&h=200&fit=crop', text: 'جيد جداً. استقدمت عمالاً لمشروع بناء وكانوا محترفين جداً. السعر مناسب والجودة عالية.', date: '2026-02-13', verified: true },
+        { id: 4, name: 'سارة محمود', title: 'مديرة مستودع', rating: 5, image: 'https://images.unsplash.com/photo-1517841905240-74f0f6961afa?w=200&h=200&fit=crop', text: 'تجربة رائعة معهم! الموظفون المقدمون لديهم تدريب عالي وخبرة جيدة. أنصح الجميع بالتعاون معهم.', date: '2026-02-12', verified: true },
+        { id: 5, name: 'خالد إبراهيم', title: 'صاحب ورشة', rating: 4, image: 'https://images.unsplash.com/photo-1516321318423-f06f70545ca9?w=200&h=200&fit=crop', text: 'خدمة جيدة جداً وموثوقة. استقدمت ميكانيكيين منهم وكانوا ممتازين. وقت توصيل سريع وكفاءة عالية.', date: '2026-02-11', verified: true },
+        { id: 6, name: 'نور السلام', title: 'مدير مشروع', rating: 5, image: 'https://images.unsplash.com/photo-1519046904884-53103b34b206?w=200&h=200&fit=crop', text: 'أفضل شركة توظيف تعاملت معها. الأسعار منافسة والخدمة احترافية جداً والتزام عالي من الموظفين.', date: '2026-02-10', verified: true },
+        { id: 7, name: 'علي عبدالله', title: 'صاحب متجر', rating: 4, image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop', text: 'خدمة ممتازة ورائعة. استقدمت عمال نظافة وكانوا جادين وملتزمين جداً. أعود إليهم دائماً.', date: '2026-02-09', verified: true },
+        { id: 8, name: 'ليلى محمد', title: 'مديرة تسويق', rating: 5, image: 'https://images.unsplash.com/photo-1502685104226-2cf5c06e7f04?w=200&h=200&fit=crop', text: 'تعاملهم احترافي للغاية. قدموا لنا عمالاً دون أي مشاكل. الخدمة سلسة والنتائج مميزة.', date: '2026-02-08', verified: true },
+        { id: 9, name: 'عمر حسن', title: 'مهندس موقع', rating: 5, image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&h=200&fit=crop', text: 'شركة متميزة جداً. الموظفون مدربون ومحترفون. أثق بهم تماماً وأعود إليهم دائماً.', date: '2026-02-07', verified: true },
+        { id: 10, name: 'هند محمود', title: 'صاحبة مصنع ملابس', rating: 4, image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop', text: 'جودة عالية جداً من العمالة المقدمة. التزام عالي والتعامل احترافي. سعيدة جداً بالخدمة.', date: '2026-02-06', verified: true },
+        { id: 11, name: 'محمود علي', title: 'مقاول', rating: 5, image: 'https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=200&h=200&fit=crop', text: 'ممتاز! لا توجد كلمة أخرى لوصف الخدمة. موظفون ممتازون وخدمة سريعة وموثوقة 100%.', date: '2026-02-05', verified: true },
+        { id: 12, name: 'جميلة أحمد', title: 'مديرة فندق', rating: 4, image: 'https://images.unsplash.com/photo-1520525260941-11d48da67e8f?w=200&h=200&fit=crop', text: 'خدمة جيدة جداً. موظفونا من عندهم ممتازين وملتزمين. أنصح بهم بكل قلب.', date: '2026-02-04', verified: true },
+        { id: 13, name: 'يوسف محمد', title: 'صاحب مطعم', rating: 5, image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop', text: 'أفضل تجربة توظيف لدي. الموظفون محترفون وملتزمون. شركة موثوقة 100%.', date: '2026-02-03', verified: true }
+      ],
+      en: [
+        { id: 1, name: 'Mohamed Ahmed', title: 'Factory Owner', rating: 5, image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop', text: 'Excellent service! They provided us with skilled and committed workers. Their professionalism and hiring speed are unmatched.', date: '2026-02-15', verified: true },
+        { id: 2, name: 'Fatima Ali', title: 'HR Manager', rating: 5, image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&h=200&fit=crop', text: 'A reliable company with excellent reputation. The workers provided have high competence and commitment.', date: '2026-02-14', verified: true },
+        { id: 3, name: 'Ahmed El-Sharkawy', title: 'Contractor', rating: 4, image: 'https://images.unsplash.com/photo-1438761681033-6461e9cfe266?w=200&h=200&fit=crop', text: 'Very good. I hired construction workers and they were very professional. Good prices and high quality.', date: '2026-02-13', verified: true },
+        { id: 4, name: 'Sarah Mahmoud', title: 'Warehouse Manager', rating: 5, image: 'https://images.unsplash.com/photo-1517841905240-74f0f6961afa?w=200&h=200&fit=crop', text: 'Amazing experience! The provided employees have high training and good experience. I recommend everyone to work with them.', date: '2026-02-12', verified: true },
+        { id: 5, name: 'Khaled Ibrahim', title: 'Workshop Owner', rating: 4, image: 'https://images.unsplash.com/photo-1516321318423-f06f70545ca9?w=200&h=200&fit=crop', text: 'Very good and reliable service. I hired mechanics from them and they were excellent. Fast delivery and high efficiency.', date: '2026-02-11', verified: true },
+        { id: 6, name: 'Nour Al-Salam', title: 'Project Manager', rating: 5, image: 'https://images.unsplash.com/photo-1519046904884-53103b34b206?w=200&h=200&fit=crop', text: 'Best staffing company I\'ve worked with. Competitive prices and very professional service with high employee commitment.', date: '2026-02-10', verified: true },
+        { id: 7, name: 'Ali Abdullah', title: 'Store Owner', rating: 4, image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop', text: 'Excellent and amazing service. I hired cleaning staff and they were very dedicated and committed. I always come back to them.', date: '2026-02-09', verified: true },
+        { id: 8, name: 'Layla Mohamed', title: 'Marketing Manager', rating: 5, image: 'https://images.unsplash.com/photo-1502685104226-2cf5c06e7f04?w=200&h=200&fit=crop', text: 'Their treatment is very professional. They provided us with workers without any issues. Service is smooth and results are outstanding.', date: '2026-02-08', verified: true },
+        { id: 9, name: 'Omar Hassan', title: 'Site Engineer', rating: 5, image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&h=200&fit=crop', text: 'Excellent company. The employees are trained and professional. I trust them completely and always come back to them.', date: '2026-02-07', verified: true },
+        { id: 10, name: 'Hind Mahmoud', title: 'Clothing Factory Owner', rating: 4, image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop', text: 'Very high quality workers. High commitment and professional treatment. Very satisfied with the service.', date: '2026-02-06', verified: true },
+        { id: 11, name: 'Mahmoud Ali', title: 'Contractor', rating: 5, image: 'https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=200&h=200&fit=crop', text: 'Excellent! No other word to describe the service. Excellent employees, fast service and 100% reliable.', date: '2026-02-05', verified: true },
+        { id: 12, name: 'Jamila Ahmed', title: 'Hotel Manager', rating: 4, image: 'https://images.unsplash.com/photo-1520525260941-11d48da67e8f?w=200&h=200&fit=crop', text: 'Very good service. Our employees from them are excellent and committed. I highly recommend them.', date: '2026-02-04', verified: true },
+        { id: 13, name: 'Youssef Mohamed', title: 'Restaurant Owner', rating: 5, image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop', text: 'Best hiring experience I\'ve had. Employees are professional and committed. 100% reliable company.', date: '2026-02-03', verified: true }
+      ]
+    };
+
+    let currentLanguage = localStorage.getItem('language') || 'en';
+    let currentFilter = 'all';
+
+    function createStars(rating) {
+      let starsHtml = '';
+      for (let i = 0; i < 5; i++) starsHtml += `<span class="star ${i < rating ? '' : 'empty'}">★</span>`;
+      return starsHtml;
+    }
+
+    function createTestimonialCard(testimonial) {
+      return `
+        <div class="testimonial-card" data-rating="${testimonial.rating}">
+          <div class="customer-info">
+            <img src="${testimonial.image}" alt="${testimonial.name}" class="customer-image">
+            <div class="customer-details">
+              <div class="customer-name">${testimonial.name}</div>
+              <div class="customer-title">${testimonial.title}</div>
+              <div class="rating">${createStars(testimonial.rating)}</div>
+            </div>
+          </div>
+          <p class="testimonial-text">"${testimonial.text}"</p>
+          <div class="testimonial-footer">
+            <span>${new Date(testimonial.date).toLocaleDateString(currentLanguage === 'ar' ? 'ar-EG' : 'en-US')}</span>
+            ${testimonial.verified ? `<span class="verified-badge">✓ ${currentLanguage === 'ar' ? 'موثق' : 'Verified'}</span>` : ''}
+          </div>
+        </div>
+      `;
+    }
+
+    function renderTestimonials() {
+      const testimonials = testimonialsData[currentLanguage] || testimonialsData.en;
+      const grid = document.getElementById('testimonialsGrid');
+      
+      if (currentFilter === 'all') {
+        grid.innerHTML = testimonials.map(t => createTestimonialCard(t)).join('');
+      } else {
+        const filtered = testimonials.filter(t => t.rating === currentFilter);
+        if (filtered.length === 0) {
+          const msg = currentLanguage === 'ar' ? 'لا توجد تقييمات' : 'No testimonials';
+          const desc = currentLanguage === 'ar' ? 'جاري البحث عن آراء بهذا التقييم' : 'Looking for testimonials with this rating';
+          grid.innerHTML = `<div class="empty-state" style="grid-column: 1 / -1;"><h3>${msg}</h3><p>${desc}</p></div>`;
+        } else {
+          grid.innerHTML = filtered.map(t => createTestimonialCard(t)).join('');
+        }
+      }
+    }
+
+    function filterTestimonials(e, rating) {
+      currentFilter = rating;
+      document.querySelectorAll('.testimonials-filter .filter-btn').forEach(btn => btn.classList.remove('active'));
+      if (e && e.target) e.target.classList.add('active');
+      renderTestimonials();
+    }
+
+    const texts = {
+      en: {
+        navHome: 'Home', navAbout: 'About', navJobs: 'Jobs', navTestimonials: 'Testimonials', navContact: 'Contact',
+        pageTitle: '⭐ Customer Testimonials', pageSubtitle: 'Read reviews from our satisfied clients about our services',
+        ratingSummaryTitle: 'Our Customer Ratings', avgLabel: 'Average Rating', reviewsLabel: 'Total Reviews', satisfactionLabel: 'Customer Satisfaction',
+        filterAll: 'All Reviews', filter5Stars: '⭐⭐⭐⭐⭐ Excellent', filter4Stars: '⭐⭐⭐⭐ Very Good', filter3Stars: '⭐⭐⭐ Good',
+        footerCompany: 'Company', footerAboutText: 'A company specialized in providing trained and reliable workforce', 
+        footerLinks: 'Quick Links', footerText: '&copy; 2026 HR Connect Egypt. All rights reserved.'
+      },
+      ar: {
+        navHome: 'الرئيسية', navAbout: 'عن الشركة', navJobs: 'الوظائف', navTestimonials: 'آراء العملاء', navContact: 'اتصل بنا',
+        pageTitle: '⭐ آراء عملائنا', pageSubtitle: 'اقرأ تجارب وآراء عملائنا الراضين عن خدماتنا',
+        ratingSummaryTitle: 'تقييمات عملائنا', avgLabel: 'متوسط التقييم', reviewsLabel: 'عدد التقييمات', satisfactionLabel: 'رضا العملاء',
+        filterAll: 'جميع التقييمات', filter5Stars: '⭐⭐⭐⭐⭐ ممتاز', filter4Stars: '⭐⭐⭐⭐ جيد جداً', filter3Stars: '⭐⭐⭐ جيد',
+        footerCompany: 'الشركة', footerAboutText: 'شركة متخصصة في توفير العمالة المدربة والموثوقة',
+        footerLinks: 'الروابط السريعة', footerText: '&copy; 2026 شركة توظيف عمال. جميع الحقوق محفوظة.'
+      }
+    };
+
+    function setLanguage(lang) {
+      currentLanguage = lang;
+      localStorage.setItem('language', lang);
+      document.documentElement.lang = lang;
+      document.body.dir = lang === 'ar' ? 'rtl' : 'ltr';
+
+      const btnAr = document.getElementById('btnArabic');
+      const btnEn = document.getElementById('btnEnglish');
+      if (btnAr) btnAr.classList.toggle('hidden', lang === 'ar');
+      if (btnEn) btnEn.classList.toggle('hidden', lang === 'en');
+
+      const t = texts[lang] || texts.en;
+      const setIf = (id, val) => { const el = document.getElementById(id); if (el) el.innerHTML = val; };
+      setIf('navHome', t.navHome); setIf('navAbout', t.navAbout); setIf('navJobs', t.navJobs); setIf('navTestimonials', t.navTestimonials); setIf('navContact', t.navContact);
+      setIf('testimonialsPageTitle', t.pageTitle); setIf('testimonialsPageSubtitle', t.pageSubtitle);
+      setIf('ratingSummaryTitle', t.ratingSummaryTitle); setIf('avgLabel', t.avgLabel); setIf('reviewsLabel', t.reviewsLabel); setIf('satisfactionLabel', t.satisfactionLabel);
+      setIf('filterAll', t.filterAll); setIf('filter5Stars', t.filter5Stars); setIf('filter4Stars', t.filter4Stars); setIf('filter3Stars', t.filter3Stars);
+      setIf('footerCompany', t.footerCompany); setIf('footerAboutText', t.footerAboutText); setIf('footerLinks', t.footerLinks); setIf('footerText', t.footerText);
+
+      renderTestimonials();
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      setLanguage(currentLanguage);
+      const btnAr = document.getElementById('btnArabic');
+      const btnEn = document.getElementById('btnEnglish');
+      if (btnAr) btnAr.classList.toggle('hidden', currentLanguage === 'ar');
+      if (btnEn) btnEn.classList.toggle('hidden', currentLanguage === 'en');
+      renderTestimonials();
+    });
+  </script>
+  <script src="index.js"></script>
+</body>
+</html>
