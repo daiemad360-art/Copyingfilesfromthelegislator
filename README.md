@@ -1,0 +1,726 @@
+[worker.html](https://github.com/user-attachments/files/25879773/worker.html)
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Apply for a job at HR Connect Egypt">
+  <meta name="theme-color" content="#2c5f7f">
+  <title>Apply for a Job - HR Connect Egypt</title>
+  <link rel="stylesheet" href="index.css">
+  <style>
+    .worker-page {
+      padding: 80px 20px;
+      background: linear-gradient(135deg, #f0f5f8 0%, #e8f0f5 100%);
+      min-height: 100vh;
+    }
+
+    .worker-container {
+      max-width: 850px;
+      margin: 0 auto;
+    }
+
+    .worker-header {
+      background: linear-gradient(135deg, #2c5f7f 0%, #4a8f5e 100%);
+      color: white;
+      padding: 3.5rem 2rem;
+      border-radius: 15px;
+      text-align: center;
+      margin-bottom: 3rem;
+      box-shadow: 0 10px 35px rgba(44, 95, 127, 0.25);
+      animation: slideDown 0.6s ease;
+    }
+
+    @keyframes slideDown {
+      from { opacity: 0; transform: translateY(-30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .worker-header h1 {
+      font-size: 2.6rem;
+      margin-bottom: 1rem;
+      margin-top: 0;
+      font-weight: 800;
+      text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.25);
+    }
+
+    .worker-header p {
+      font-size: 1rem;
+      opacity: 0.95;
+      line-height: 1.7;
+    }
+
+    .worker-form-wrapper {
+      background: white;
+      padding: 2.5rem;
+      border-radius: 15px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+      animation: slideUp 0.6s ease;
+    }
+
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .form-info {
+      background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+      padding: 1.3rem;
+      border-radius: 10px;
+      margin-bottom: 2.2rem;
+      border-left: 4px solid #4a8f5e;
+      box-shadow: 0 2px 8px rgba(74, 143, 94, 0.1);
+    }
+
+    .form-info h3 {
+      color: #2c5f7f;
+      margin-bottom: 0.4rem;
+      font-size: 1rem;
+      font-weight: 700;
+    }
+
+    .form-info p {
+      color: #333;
+      margin: 0;
+      line-height: 1.5;
+      font-size: 0.9rem;
+    }
+
+    .form-section-title {
+      color: #2c5f7f;
+      font-size: 1.2rem;
+      margin-top: 2rem;
+      margin-bottom: 1.3rem;
+      padding-bottom: 0.7rem;
+      border-bottom: 3px solid #4a8f5e;
+      font-weight: 700;
+    }
+
+    .form-section-title:first-child {
+      margin-top: 0;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+      color: #2c5f7f;
+      font-size: 0.9rem;
+    }
+
+    .required {
+      color: #e74c3c;
+      font-weight: bold;
+      margin-left: 0.3rem;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 11px 14px;
+      border: 2px solid #e0e0e0;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      font-family: inherit;
+      transition: all 0.3s ease;
+      background-color: #f8f9fa;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: #4a8f5e;
+      background-color: white;
+      box-shadow: 0 0 0 3px rgba(74, 143, 94, 0.12);
+      transform: translateY(-1px);
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.3rem;
+    }
+
+    .form-group-full {
+      grid-column: 1 / -1;
+    }
+
+    .btn-submit {
+      width: 100%;
+      padding: 14px 28px;
+      background: linear-gradient(135deg, #2c5f7f 0%, #4a8f5e 100%);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(44, 95, 127, 0.2);
+      margin-top: 1.3rem;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+    }
+
+    .btn-submit:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 25px rgba(44, 95, 127, 0.3);
+    }
+
+    .btn-submit:active {
+      transform: translateY(-1px);
+    }
+
+    .btn-submit:disabled {
+      background: #999;
+      cursor: not-allowed;
+      box-shadow: none;
+    }
+
+    .success-message {
+      display: none;
+      background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+      color: #155724;
+      padding: 1.3rem;
+      border-radius: 10px;
+      margin-bottom: 2rem;
+      border-left: 4px solid #28a745;
+      box-shadow: 0 2px 8px rgba(40, 167, 69, 0.15);
+      animation: slideDown 0.5s ease;
+    }
+
+    .success-message.show {
+      display: block;
+    }
+
+    .success-message strong {
+      font-size: 1rem;
+    }
+
+    .contact-section {
+      text-align: center;
+      margin-top: 2.5rem;
+      padding-top: 2rem;
+      border-top: 2px solid #e0e0e0;
+    }
+
+    .contact-section h3 {
+      color: #2c5f7f;
+      margin-bottom: 0.8rem;
+      font-size: 1.1rem;
+      font-weight: 700;
+    }
+
+    .contact-section p {
+      color: #555;
+      margin: 0.4rem 0;
+      line-height: 1.6;
+      font-size: 0.95rem;
+    }
+
+    .contact-info {
+      display: inline-block;
+      background: #f0f5f8;
+      padding: 1.3rem 2rem;
+      border-radius: 8px;
+      margin-top: 1rem;
+    }
+
+    .contact-info p {
+      margin: 0.6rem 0;
+    }
+
+    .contact-info a {
+      color: #2c5f7f;
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s ease;
+    }
+
+    .contact-info a:hover {
+      color: #4a8f5e;
+    }
+
+    .form-support {
+      background: #f0f5f8;
+      padding: 1.3rem;
+      border-radius: 8px;
+      margin: 2rem 0;
+      border-right: 4px solid #2c5f7f;
+    }
+
+    .form-support h4 {
+      color: #2c5f7f;
+      margin-bottom: 0.4rem;
+      font-size: 1rem;
+      font-weight: 700;
+    }
+
+    .form-support p {
+      color: #555;
+      margin: 0;
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+
+    .lang-btn.hidden { display: none; }
+
+    @media (max-width: 768px) {
+      .worker-page { padding: 40px 15px; }
+      .worker-header { padding: 2.2rem 1.5rem; }
+      .worker-header h1 { font-size: 1.8rem; }
+      .worker-form-wrapper { padding: 1.8rem 1.3rem; }
+      .form-row { grid-template-columns: 1fr; }
+      .form-section-title { font-size: 1.05rem; }
+      .contact-info { display: block; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="container">
+      <div class="nav-brand">💼 HR Connect Egypt</div>
+      <ul class="nav-links">
+        <li><a href="start.html" style="color:#4a8f5e;font-weight:700">⚡ HUB</a></li>
+        <li><a href="landing.html" id="navHome">Home</a></li>
+        <li><a href="about.html" id="navAbout">About</a></li>
+        <li><a href="jobs.html" id="navJobs">Jobs</a></li>
+        <li><a href="testimonials.html" id="navTestimonials">Testimonials</a></li>
+        <li><a href="worker.html" id="navApply">Apply for Job</a></li>
+        <li><a href="company.html" id="navRequest">Request Workers</a></li>
+        <li><a href="index.html#contact" id="navContact">Contact</a></li>
+        <li class="lang-switch">
+          <button onclick="setLanguage('ar')" class="lang-btn hidden" id="btnArabic">عربي</button>
+          <button onclick="setLanguage('en')" class="lang-btn hidden" id="btnEnglish">EN</button>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <section class="worker-page">
+    <div class="worker-container">
+      <div class="worker-header">
+        <h1 id="pageTitle">📋 Apply for a Job</h1>
+        <p id="pageSubtitle">Join our team and enjoy a professional work environment with competitive salaries</p>
+      </div>
+
+      <div class="worker-form-wrapper">
+        <div class="form-info">
+          <h3 id="infoTitle">ℹ️ Important Information</h3>
+          <p id="infoText">Please fill in all required fields <span class="required">*</span> carefully and honestly</p>
+        </div>
+
+        <form id="workerApplicationForm" method="post">
+          <h3 class="form-section-title" id="personalInfoTitle">Personal Information</h3>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="fullNameInput" id="fullNameLabel">Full Name <span class="required">*</span></label>
+              <input type="text" id="fullNameInput" name="full_name" placeholder="John Ahmed Ali" required>
+            </div>
+            <div class="form-group">
+              <label for="ageInput" id="ageLabel">Age <span class="required">*</span></label>
+              <input type="number" id="ageInput" name="age" min="18" max="70" placeholder="25" required>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="phoneInput" id="phoneLabel">Phone Number <span class="required">*</span></label>
+              <input type="tel" id="phoneInput" name="phone" placeholder="01099999999" required>
+            </div>
+            <div class="form-group">
+              <label for="emailInput" id="emailLabel">Email Address</label>
+              <input type="email" id="emailInput" name="email" placeholder="example@email.com">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="cityInput" id="cityLabel">Governorate <span class="required">*</span></label>
+              <input type="text" id="cityInput" name="governorate" placeholder="Cairo / Giza / Alexandria" required>
+            </div>
+            <div class="form-group">
+              <label for="addressInput" id="addressLabel">Full Address <span class="required">*</span></label>
+              <input type="text" id="addressInput" name="address" placeholder="District / Street / House number" required>
+            </div>
+          </div>
+
+          <h3 class="form-section-title" id="skillsTitle">Skills & Experience</h3>
+
+          <div class="form-group form-group-full">
+            <label for="jobTypeSelect" id="jobTypeLabel">Specialization <span class="required">*</span></label>
+            <select id="jobTypeSelect" name="specialization" required>
+              <option value="">Select Specialization</option>
+              <option value="electrical">Electrician</option>
+              <option value="mechanical">Mechanic</option>
+              <option value="construction">Construction Worker</option>
+              <option value="security">Security Guard</option>
+              <option value="cleaning">Cleaning Staff</option>
+              <option value="maintenance">Maintenance Worker</option>
+              <option value="driver">Driver</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="experienceInput" id="experienceLabel">Years of Experience <span class="required">*</span></label>
+              <input type="number" id="experienceInput" name="experience_years" min="0" max="50" placeholder="3" required>
+            </div>
+            <div class="form-group">
+              <label for="certificateInput" id="certificateLabel">Certificates & Training</label>
+              <input type="text" id="certificateInput" name="certificates" placeholder="e.g. Certified Electrical Course">
+            </div>
+          </div>
+
+          <h3 class="form-section-title" id="preferencesTitle">Work Preferences</h3>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="employmentTypeSelect" id="employmentTypeLabel">Employment Type <span class="required">*</span></label>
+              <select id="employmentTypeSelect" name="employment_type" required>
+                <option value="">Select Employment Type</option>
+                <option value="permanent">Permanent</option>
+                <option value="temporary">Temporary</option>
+                <option value="flexible">Flexible</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="availabilitySelect" id="availabilityLabel">Availability <span class="required">*</span></label>
+              <select id="availabilitySelect" name="availability" required>
+                <option value="">When can you start?</option>
+                <option value="immediately">Immediately</option>
+                <option value="two_weeks">Two Weeks</option>
+                <option value="one_month">One Month</option>
+              </select>
+            </div>
+          </div>
+
+          <h3 class="form-section-title" id="additionalTitle">Additional Information</h3>
+
+          <div class="form-group form-group-full">
+            <label for="bioInput" id="bioLabel">About You (Brief Story)</label>
+            <textarea id="bioInput" name="bio" placeholder="Tell us about yourself, your experience and your reasons for wanting to work with us..."></textarea>
+          </div>
+
+          <div class="form-support">
+            <h4 id="supportTitle">💡 Tip</h4>
+            <p id="supportText">Be honest and sincere when filling this form. This helps us select the best candidate that matches your professional needs and aspirations.</p>
+          </div>
+
+          <button type="submit" class="btn-submit" id="submitBtn">Submit Application</button>
+        </form>
+
+        <div class="success-message" id="successMessage">
+          <strong>✓ Your application has been submitted successfully!</strong><br>
+          <span id="successText">Thank you for applying with us. Our team will review your information and contact you soon.</span>
+        </div>
+      </div>
+
+      <div class="contact-section">
+        <h3 id="contactTitle">📞 Need Help?</h3>
+        <p id="contactDesc">Feel free to contact us</p>
+        <div class="contact-info">
+          <p>
+            <strong>Phone:</strong> <a href="tel:01013346497">01013346497</a>
+          </p>
+          <p>
+            <strong>Email:</strong> <a href="mailto:daiemad360@gmail.com">daiemad360@gmail.com</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h4 id="footerCompany">Company</h4>
+          <p id="footerAboutText">A company specialized in providing trained and reliable workforce</p>
+        </div>
+        <div class="footer-section">
+          <h4 id="footerLinks">Quick Links</h4>
+          <ul>
+            <li><a href="">Home</a></li>
+            <li><a href="">About</a></li>
+            <li><a href="">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+      <hr>
+      <p id="footerText">&copy; 2026 HR Connect Egypt. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    let currentLanguage = localStorage.getItem('language') || 'en';
+
+    const texts = {
+      en: {
+        navHome: 'Home', navAbout: 'About', navJobs: 'Jobs', navTestimonials: 'Testimonials', navContact: 'Contact',
+        pageTitle: '📋 Apply for a Job', pageSubtitle: 'Join our team and enjoy a professional work environment with competitive salaries',
+        infoTitle: 'ℹ️ Important Information', infoText: 'Please fill in all required fields * carefully and honestly',
+        personalInfoTitle: 'Personal Information', fullNameLabel: 'Full Name *', fullNamePlaceholder: 'John Ahmed Ali',
+        ageLabel: 'Age *', agePlaceholder: '25', phoneLabel: 'Phone Number *', phonePlaceholder: '01099999999',
+        emailLabel: 'Email Address', emailPlaceholder: 'example@email.com', cityLabel: 'Governorate *', cityPlaceholder: 'Cairo / Giza / Alexandria',
+        addressLabel: 'Full Address *', addressPlaceholder: 'District / Street / House number',
+        skillsTitle: 'Skills & Experience', jobTypeLabel: 'Specialization *', jobTypeSelect: 'Select Specialization',
+        electrician: 'Electrician', mechanic: 'Mechanic', constructionWorker: 'Construction Worker', securityGuard: 'Security Guard',
+        cleaningStaff: 'Cleaning Staff', maintenanceWorker: 'Maintenance Worker', driver: 'Driver', other: 'Other',
+        experienceLabel: 'Years of Experience *', experiencePlaceholder: '3', certificateLabel: 'Certificates & Training',
+        certificatePlaceholder: 'e.g. Certified Electrical Course',
+        preferencesTitle: 'Work Preferences', employmentTypeLabel: 'Employment Type *', employmentTypeSelect: 'Select Employment Type',
+        permanent: 'Permanent', temporary: 'Temporary', flexible: 'Flexible',
+        availabilityLabel: 'Availability *', availabilitySelect: 'When can you start?', immediately: 'Immediately',
+        twoWeeks: 'Two Weeks', oneMonth: 'One Month',
+        additionalTitle: 'Additional Information', bioLabel: 'About You (Brief Story)',
+        bioPlaceholder: 'Tell us about yourself, your experience and your reasons for wanting to work with us...',
+        supportTitle: '💡 Tip', supportText: 'Be honest and sincere when filling this form. This helps us select the best candidate that matches your professional needs and aspirations.',
+        submitBtn: 'Submit Application', successMsg: '✓ Your application has been submitted successfully!',
+        successText: 'Thank you for applying with us. Our team will review your information and contact you soon.',
+        contactTitle: '📞 Need Help?', contactDesc: 'Feel free to contact us',
+        footerCompany: 'Company', footerAboutText: 'A company specialized in providing trained and reliable workforce',
+        footerLinks: 'Quick Links', footerText: '&copy; 2026 HR Connect Egypt. All rights reserved.'
+      },
+      ar: {
+        navHome: 'الرئيسية', navAbout: 'عن الشركة', navJobs: 'الوظائف', navTestimonials: 'آراء العملاء', navContact: 'اتصل بنا',
+        pageTitle: '📋 قدّم على وظيفة', pageSubtitle: 'انضم إلى فريقنا واستمتع ببيئة عمل احترافية وأجور منافسة',
+        infoTitle: 'ℹ️ معلومات مهمة', infoText: 'يرجى ملء جميع الحقول المطلوبة * بعناية وبصدق',
+        personalInfoTitle: 'البيانات الشخصية', fullNameLabel: 'الاسم الكامل *', fullNamePlaceholder: 'محمد أحمد علي',
+        ageLabel: 'السن *', agePlaceholder: '25', phoneLabel: 'رقم الهاتف *', phonePlaceholder: '01099999999',
+        emailLabel: 'البريد الإلكتروني', emailPlaceholder: 'example@email.com', cityLabel: 'المحافظة *', cityPlaceholder: 'القاهرة / الجيزة / الإسكندرية',
+        addressLabel: 'العنوان بالتفصيل *', addressPlaceholder: 'الحي / الشارع / رقم المنزل',
+        skillsTitle: 'المهارات والخبرة', jobTypeLabel: 'التخصص المطلوب *', jobTypeSelect: 'اختر التخصص',
+        electrician: 'كهربائي', mechanic: 'ميكانيكي', constructionWorker: 'عامل بناء', securityGuard: 'حارس أمن',
+        cleaningStaff: 'عامل نظافة', maintenanceWorker: 'عامل صيانة', driver: 'سائق', other: 'أخرى',
+        experienceLabel: 'سنوات الخبرة *', experiencePlaceholder: '3', certificateLabel: 'الشهادات والتدريبات',
+        certificatePlaceholder: 'مثل: دورة كهربائية معتمدة',
+        preferencesTitle: 'تفضيلات العمل', employmentTypeLabel: 'نوع العقد *', employmentTypeSelect: 'اختر نوع العقد',
+        permanent: 'دائم', temporary: 'مؤقت', flexible: 'مرن',
+        availabilityLabel: 'توفرك للعمل *', availabilitySelect: 'متى يمكنك البدء؟', immediately: 'فوراً',
+        twoWeeks: 'أسبوعين', oneMonth: 'شهر',
+        additionalTitle: 'معلومات إضافية', bioLabel: 'عن نفسك (قصة قصيرة)',
+        bioPlaceholder: 'اخبرنا عن نفسك وعن خبرتك وأسباب رغبتك في العمل معنا...',
+        supportTitle: '💡 نصيحة', supportText: 'كن صادقاً وصريحاً في ملء النموذج. هذا يساعدنا على اختيار أفضل موظف يناسب احتياجاتك المهنية وطموحاتك.',
+        submitBtn: 'إرسال الطلب', successMsg: '✓ تم إرسال طلبك بنجاح!',
+        successText: 'شكراً لتقديمك على وظيفة معنا. سيقوم فريقنا بمراجعة بيانات طلبك والتواصل معك قريباً.',
+        contactTitle: '📞 هل تحتاج إلى مساعدة؟', contactDesc: 'لا تتردد في التواصل معنا',
+        footerCompany: 'الشركة', footerAboutText: 'شركة متخصصة في توفير العمالة المدربة والموثوقة',
+        footerLinks: 'الروابط السريعة', footerText: '&copy; 2026 شركة توظيف عمال. جميع الحقوق محفوظة.'
+      }
+    };
+
+    function setLanguage(lang) {
+      currentLanguage = lang;
+      localStorage.setItem('language', lang);
+      document.documentElement.lang = lang;
+      document.body.dir = lang === 'ar' ? 'rtl' : 'ltr';
+
+      const btnAr = document.getElementById('btnArabic');
+      const btnEn = document.getElementById('btnEnglish');
+      if (btnAr) btnAr.classList.toggle('hidden', lang === 'ar');
+      if (btnEn) btnEn.classList.toggle('hidden', lang === 'en');
+
+      const t = texts[lang] || texts.en;
+      const setIf = (id, val) => { const el = document.getElementById(id); if (el) el.innerHTML = val; };
+      
+      setIf('navHome', t.navHome); setIf('navAbout', t.navAbout); setIf('navJobs', t.navJobs); 
+      setIf('navTestimonials', t.navTestimonials); setIf('navContact', t.navContact);
+      setIf('pageTitle', t.pageTitle); setIf('pageSubtitle', t.pageSubtitle);
+      setIf('infoTitle', t.infoTitle); setIf('infoText', t.infoText);
+      setIf('personalInfoTitle', t.personalInfoTitle); setIf('fullNameLabel', t.fullNameLabel);
+      setIf('ageLabel', t.ageLabel); setIf('phoneLabel', t.phoneLabel); setIf('emailLabel', t.emailLabel);
+      setIf('cityLabel', t.cityLabel); setIf('addressLabel', t.addressLabel);
+      setIf('skillsTitle', t.skillsTitle); setIf('jobTypeLabel', t.jobTypeLabel);
+      setIf('experienceLabel', t.experienceLabel); setIf('certificateLabel', t.certificateLabel);
+      setIf('preferencesTitle', t.preferencesTitle); setIf('employmentTypeLabel', t.employmentTypeLabel);
+      setIf('availabilityLabel', t.availabilityLabel);
+      setIf('additionalTitle', t.additionalTitle); setIf('bioLabel', t.bioLabel);
+      setIf('supportTitle', t.supportTitle); setIf('supportText', t.supportText);
+      setIf('submitBtn', t.submitBtn);
+      setIf('contactTitle', t.contactTitle); setIf('contactDesc', t.contactDesc);
+      setIf('footerCompany', t.footerCompany); setIf('footerAboutText', t.footerAboutText);
+      setIf('footerLinks', t.footerLinks); setIf('footerText', t.footerText);
+
+      // Update select options
+      const jobTypeSelect = document.getElementById('jobTypeSelect');
+      if (jobTypeSelect) {
+        jobTypeSelect.innerHTML = `
+          <option value="">${t.jobTypeSelect}</option>
+          <option value="electrical">${t.electrician}</option>
+          <option value="mechanical">${t.mechanic}</option>
+          <option value="construction">${t.constructionWorker}</option>
+          <option value="security">${t.securityGuard}</option>
+          <option value="cleaning">${t.cleaningStaff}</option>
+          <option value="maintenance">${t.maintenanceWorker}</option>
+          <option value="driver">${t.driver}</option>
+          <option value="other">${t.other}</option>
+        `;
+      }
+
+      const employmentTypeSelect = document.getElementById('employmentTypeSelect');
+      if (employmentTypeSelect) {
+        employmentTypeSelect.innerHTML = `
+          <option value="">${t.employmentTypeSelect}</option>
+          <option value="permanent">${t.permanent}</option>
+          <option value="temporary">${t.temporary}</option>
+          <option value="flexible">${t.flexible}</option>
+        `;
+      }
+
+      const availabilitySelect = document.getElementById('availabilitySelect');
+      if (availabilitySelect) {
+        availabilitySelect.innerHTML = `
+          <option value="">${t.availabilitySelect}</option>
+          <option value="immediately">${t.immediately}</option>
+          <option value="two_weeks">${t.twoWeeks}</option>
+          <option value="one_month">${t.oneMonth}</option>
+        `;
+      }
+
+      // Update input placeholders
+      const fullNameInput = document.getElementById('fullNameInput');
+      if (fullNameInput) fullNameInput.placeholder = t.fullNamePlaceholder;
+      
+      const ageInput = document.getElementById('ageInput');
+      if (ageInput) ageInput.placeholder = t.ageLabel.split(' ')[0];
+      
+      const phoneInput = document.getElementById('phoneInput');
+      if (phoneInput) phoneInput.placeholder = t.phonePlaceholder;
+      
+      const emailInput = document.getElementById('emailInput');
+      if (emailInput) emailInput.placeholder = t.emailPlaceholder;
+      
+      const cityInput = document.getElementById('cityInput');
+      if (cityInput) cityInput.placeholder = t.cityPlaceholder;
+      
+      const addressInput = document.getElementById('addressInput');
+      if (addressInput) addressInput.placeholder = t.addressPlaceholder;
+      
+      const experienceInput = document.getElementById('experienceInput');
+      if (experienceInput) experienceInput.placeholder = t.experiencePlaceholder;
+      
+      const certificateInput = document.getElementById('certificateInput');
+      if (certificateInput) certificateInput.placeholder = t.certificatePlaceholder;
+      
+      const bioInput = document.getElementById('bioInput');
+      if (bioInput) bioInput.placeholder = t.bioPlaceholder;
+
+      // Update success message
+      const successMessage = document.getElementById('successMessage');
+      if (successMessage && successMessage.classList.contains('show')) {
+        successMessage.innerHTML = `<strong>${t.successMsg}</strong><br><span id="successText">${t.successText}</span>`;
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      setLanguage(currentLanguage);
+      const btnAr = document.getElementById('btnArabic');
+      const btnEn = document.getElementById('btnEnglish');
+      if (btnAr) btnAr.classList.toggle('hidden', currentLanguage === 'ar');
+      if (btnEn) btnEn.classList.toggle('hidden', currentLanguage === 'en');
+    });
+
+    document.getElementById('workerApplicationForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const submitBtn = document.getElementById('submitBtn');
+      const originalText = submitBtn.textContent;
+      submitBtn.textContent = 'جاري الإرسال...';
+      submitBtn.disabled = true;
+
+      const formData = new FormData();
+      formData.append('full_name', document.getElementById('fullNameInput').value);
+      formData.append('age', document.getElementById('ageInput').value);
+      formData.append('phone', document.getElementById('phoneInput').value);
+      formData.append('email', document.getElementById('emailInput').value);
+      formData.append('governorate', document.getElementById('cityInput').value);
+      formData.append('address', document.getElementById('addressInput').value);
+      formData.append('specialization', document.getElementById('jobTypeSelect').value);
+      formData.append('experience_years', document.getElementById('experienceInput').value);
+      formData.append('certificates', document.getElementById('certificateInput').value);
+      formData.append('employment_type', document.getElementById('employmentTypeSelect').value);
+      formData.append('availability', document.getElementById('availabilitySelect').value);
+      formData.append('bio', document.getElementById('bioInput').value);
+
+      fetch('submit_worker.php', {
+        method: 'POST',
+        body: formData
+      })
+      .then(response => {
+        if (!response.ok) {
+          // try to read text for debugging
+          return response.text().then(txt => { throw new Error(txt || response.statusText); });
+        }
+        return response.json();
+      })
+      .then(data => {
+        const successMessage = document.getElementById('successMessage');
+        if (data.success) {
+          successMessage.innerHTML = `<strong>✓ تم إرسال طلبك بنجاح!</strong><br><span>${data.message}</span>`;
+          successMessage.classList.add('show');
+          this.reset();
+          setTimeout(() => {
+            successMessage.classList.remove('show');
+          }, 6000);
+          successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        } else {
+          let errorMsg = data.message;
+          if (data.errors && data.errors.length > 0) {
+            errorMsg += '<br><br>الأخطاء:<br>' + data.errors.join('<br>');
+          }
+          successMessage.innerHTML = `<strong>❌ خطأ:</strong><br><span>${errorMsg}</span>`;
+          successMessage.classList.add('show');
+          setTimeout(() => {
+            successMessage.classList.remove('show');
+          }, 8000);
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        const successMessage = document.getElementById('successMessage');
+        let msg = 'حدث خطأ في الإرسال. يرجى المحاولة مرة أخرى.';
+        if (error && error.message) {
+          msg += `<br><small>${error.message}</small>`;
+        }
+        successMessage.innerHTML = `<strong>❌ خطأ:</strong><br><span>${msg}</span>`;
+        successMessage.classList.add('show');
+        setTimeout(() => {
+          successMessage.classList.remove('show');
+        }, 5000);
+      })
+      .finally(() => {
+        submitBtn.textContent = originalText;
+        submitBtn.disabled = false;
+      });
+    });
+
+    // Add cross-link section
+    const crossLinkSection = document.createElement('div');
+    crossLinkSection.innerHTML = `
+      <div style="background:linear-gradient(135deg,rgba(74,143,94,0.95),rgba(44,95,127,0.95));color:white;padding:3rem 2rem;border-radius:15px;margin:3rem 0 0 0;text-align:center;box-shadow:0 8px 25px rgba(74,143,94,0.2)">
+        <h3 style="font-size:1.8rem;margin-bottom:1rem;font-weight:bold">🏢 Looking for a Job?</h3>
+        <p style="font-size:1.05rem;margin-bottom:2rem;opacity:0.95;line-height:1.7">Browse our available job openings across multiple sectors and find the right opportunity for you.</p>
+        <a href="jobs.html" style="display:inline-block;background:white;color:#4a8f5e;padding:14px 32px;border-radius:8px;text-decoration:none;font-weight:700;transition:all 0.3s;font-size:1rem">View Available Jobs →</a>
+      </div>
+    `;
+    const contactSection = document.querySelector('.contact-section');
+    if (contactSection) contactSection.parentNode.insertBefore(crossLinkSection, contactSection.nextSibling);
+  </script>
+  <script src="index.js"></script>
+</body>
+</html>
