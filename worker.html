@@ -321,39 +321,39 @@
           <p id="infoText">Please fill in all required fields <span class="required">*</span> carefully and honestly</p>
         </div>
 
-        <form id="workerApplicationForm">
+        <form id="workerApplicationForm" method="post">
           <h3 class="form-section-title" id="personalInfoTitle">Personal Information</h3>
 
           <div class="form-row">
             <div class="form-group">
               <label for="fullNameInput" id="fullNameLabel">Full Name <span class="required">*</span></label>
-              <input type="text" id="fullNameInput" placeholder="John Ahmed Ali" required>
+              <input type="text" id="fullNameInput" name="full_name" placeholder="John Ahmed Ali" required>
             </div>
             <div class="form-group">
               <label for="ageInput" id="ageLabel">Age <span class="required">*</span></label>
-              <input type="number" id="ageInput" min="18" max="70" placeholder="25" required>
+              <input type="number" id="ageInput" name="age" min="18" max="70" placeholder="25" required>
             </div>
           </div>
 
           <div class="form-row">
             <div class="form-group">
               <label for="phoneInput" id="phoneLabel">Phone Number <span class="required">*</span></label>
-              <input type="tel" id="phoneInput" placeholder="01099999999" required>
+              <input type="tel" id="phoneInput" name="phone" placeholder="01099999999" required>
             </div>
             <div class="form-group">
               <label for="emailInput" id="emailLabel">Email Address</label>
-              <input type="email" id="emailInput" placeholder="example@email.com">
+              <input type="email" id="emailInput" name="email" placeholder="example@email.com">
             </div>
           </div>
 
           <div class="form-row">
             <div class="form-group">
               <label for="cityInput" id="cityLabel">Governorate <span class="required">*</span></label>
-              <input type="text" id="cityInput" placeholder="Cairo / Giza / Alexandria" required>
+              <input type="text" id="cityInput" name="governorate" placeholder="Cairo / Giza / Alexandria" required>
             </div>
             <div class="form-group">
               <label for="addressInput" id="addressLabel">Full Address <span class="required">*</span></label>
-              <input type="text" id="addressInput" placeholder="District / Street / House number" required>
+              <input type="text" id="addressInput" name="address" placeholder="District / Street / House number" required>
             </div>
           </div>
 
@@ -361,7 +361,7 @@
 
           <div class="form-group form-group-full">
             <label for="jobTypeSelect" id="jobTypeLabel">Specialization <span class="required">*</span></label>
-            <select id="jobTypeSelect" required>
+            <select id="jobTypeSelect" name="specialization" required>
               <option value="">Select Specialization</option>
               <option value="electrical">Electrician</option>
               <option value="mechanical">Mechanic</option>
@@ -377,11 +377,11 @@
           <div class="form-row">
             <div class="form-group">
               <label for="experienceInput" id="experienceLabel">Years of Experience <span class="required">*</span></label>
-              <input type="number" id="experienceInput" min="0" max="50" placeholder="3" required>
+              <input type="number" id="experienceInput" name="experience_years" min="0" max="50" placeholder="3" required>
             </div>
             <div class="form-group">
               <label for="certificateInput" id="certificateLabel">Certificates & Training</label>
-              <input type="text" id="certificateInput" placeholder="e.g. Certified Electrical Course">
+              <input type="text" id="certificateInput" name="certificates" placeholder="e.g. Certified Electrical Course">
             </div>
           </div>
 
@@ -390,7 +390,7 @@
           <div class="form-row">
             <div class="form-group">
               <label for="employmentTypeSelect" id="employmentTypeLabel">Employment Type <span class="required">*</span></label>
-              <select id="employmentTypeSelect" required>
+              <select id="employmentTypeSelect" name="employment_type" required>
                 <option value="">Select Employment Type</option>
                 <option value="permanent">Permanent</option>
                 <option value="temporary">Temporary</option>
@@ -399,7 +399,7 @@
             </div>
             <div class="form-group">
               <label for="availabilitySelect" id="availabilityLabel">Availability <span class="required">*</span></label>
-              <select id="availabilitySelect" required>
+              <select id="availabilitySelect" name="availability" required>
                 <option value="">When can you start?</option>
                 <option value="immediately">Immediately</option>
                 <option value="two_weeks">Two Weeks</option>
@@ -412,7 +412,7 @@
 
           <div class="form-group form-group-full">
             <label for="bioInput" id="bioLabel">About You (Brief Story)</label>
-            <textarea id="bioInput" placeholder="Tell us about yourself, your experience and your reasons for wanting to work with us..."></textarea>
+            <textarea id="bioInput" name="bio" placeholder="Tell us about yourself, your experience and your reasons for wanting to work with us..."></textarea>
           </div>
 
           <div class="form-support">
@@ -637,35 +637,75 @@
     document.getElementById('workerApplicationForm').addEventListener('submit', function(e) {
       e.preventDefault();
 
-      const formData = {
-        fullName: document.getElementById('fullNameInput').value,
-        age: document.getElementById('ageInput').value,
-        phone: document.getElementById('phoneInput').value,
-        email: document.getElementById('emailInput').value,
-        city: document.getElementById('cityInput').value,
-        address: document.getElementById('addressInput').value,
-        jobType: document.getElementById('jobTypeSelect').value,
-        experience: document.getElementById('experienceInput').value,
-        certificate: document.getElementById('certificateInput').value,
-        employmentType: document.getElementById('employmentTypeSelect').value,
-        availability: document.getElementById('availabilitySelect').value,
-        bio: document.getElementById('bioInput').value
-      };
+      const submitBtn = document.getElementById('submitBtn');
+      const originalText = submitBtn.textContent;
+      submitBtn.textContent = 'جاري الإرسال...';
+      submitBtn.disabled = true;
 
-      console.log('Worker Application Data:', formData);
+      const formData = new FormData();
+      formData.append('full_name', document.getElementById('fullNameInput').value);
+      formData.append('age', document.getElementById('ageInput').value);
+      formData.append('phone', document.getElementById('phoneInput').value);
+      formData.append('email', document.getElementById('emailInput').value);
+      formData.append('governorate', document.getElementById('cityInput').value);
+      formData.append('address', document.getElementById('addressInput').value);
+      formData.append('specialization', document.getElementById('jobTypeSelect').value);
+      formData.append('experience_years', document.getElementById('experienceInput').value);
+      formData.append('certificates', document.getElementById('certificateInput').value);
+      formData.append('employment_type', document.getElementById('employmentTypeSelect').value);
+      formData.append('availability', document.getElementById('availabilitySelect').value);
+      formData.append('bio', document.getElementById('bioInput').value);
 
-      const successMessage = document.getElementById('successMessage');
-      const t = texts[currentLanguage];
-      successMessage.innerHTML = `<strong>${t.successMsg}</strong><br><span>${t.successText}</span>`;
-      successMessage.classList.add('show');
-
-      this.reset();
-
-      setTimeout(() => {
-        successMessage.classList.remove('show');
-      }, 6000);
-
-      successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      fetch('submit_worker.php', {
+        method: 'POST',
+        body: formData
+      })
+      .then(response => {
+        if (!response.ok) {
+          // try to read text for debugging
+          return response.text().then(txt => { throw new Error(txt || response.statusText); });
+        }
+        return response.json();
+      })
+      .then(data => {
+        const successMessage = document.getElementById('successMessage');
+        if (data.success) {
+          successMessage.innerHTML = `<strong>✓ تم إرسال طلبك بنجاح!</strong><br><span>${data.message}</span>`;
+          successMessage.classList.add('show');
+          this.reset();
+          setTimeout(() => {
+            successMessage.classList.remove('show');
+          }, 6000);
+          successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        } else {
+          let errorMsg = data.message;
+          if (data.errors && data.errors.length > 0) {
+            errorMsg += '<br><br>الأخطاء:<br>' + data.errors.join('<br>');
+          }
+          successMessage.innerHTML = `<strong>❌ خطأ:</strong><br><span>${errorMsg}</span>`;
+          successMessage.classList.add('show');
+          setTimeout(() => {
+            successMessage.classList.remove('show');
+          }, 8000);
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        const successMessage = document.getElementById('successMessage');
+        let msg = 'حدث خطأ في الإرسال. يرجى المحاولة مرة أخرى.';
+        if (error && error.message) {
+          msg += `<br><small>${error.message}</small>`;
+        }
+        successMessage.innerHTML = `<strong>❌ خطأ:</strong><br><span>${msg}</span>`;
+        successMessage.classList.add('show');
+        setTimeout(() => {
+          successMessage.classList.remove('show');
+        }, 5000);
+      })
+      .finally(() => {
+        submitBtn.textContent = originalText;
+        submitBtn.disabled = false;
+      });
     });
 
     // Add cross-link section
